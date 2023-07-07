@@ -1,0 +1,64 @@
+# Function that returns whether the sparql/ endpoint has an associated query body 
+map "$request_method:$query_string" $is_get_without_query {
+    ~*^GET:[\s]*$ 1;
+    default 0;
+}
+
+server {
+    root /usr/share/nginx/html/;
+    index index.html;
+    server_name ${SERVER_NAME};
+
+    # faceted.search
+    location / {
+        try_files $uri $uri/ /index.html;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
+
+    # phuzzy.link
+    location ~* ^\/(lod|browse|static).* {
+        proxy_pass http://localhost:3001;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
+
+    location ~* ^\/sparql.* {
+        if ($is_get_without_query) {
+            return 301 $scheme://$host/graphdb;
+        }
+        proxy_pass http://localhost:3001;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
+
+    #Static KW Panels Application
+    location /kw-panels/ {
+        alias /var/www/kw-panels/ ;
+        index index.html;
+    }
+
+    # GraphDB
+    location /graphdb/ {
+        proxy_pass http://localhost:7200/;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    
+        # Set a 5 minute timeout for long running queries
+        proxy_read_timeout 300;
+        proxy_connect_timeout 300;
+        proxy_send_timeout 300;
+    }
+}

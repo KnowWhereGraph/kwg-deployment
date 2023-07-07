@@ -1,0 +1,11 @@
+services:
+  nginx:
+    image: nginx:bookworm
+    ports:
+      - "80:80"
+    environment:
+      - SERVER_NAME="localhost" #your host here, wihtout https:// or http://
+    volumes:
+    - ./templates:/etc/nginx/templates
+    - ./logs:/var/log/nginx
+    - /var/www:/usr/share/nginx/html
