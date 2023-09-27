@@ -14,6 +14,15 @@ There are a number of convenience commands in the makefile to manage the deploym
 
 ### Production Environment
 
+Running KnowWhereGraph requires a large vertically scaled system. The suggested specifications are shown below.
+
+| Component | Quantity |
+|-----------|----------|
+| Cores     | 15       |
+| Memory    | 512 GB   |
+| Disk      | 14 TB    |
+
+
 Production deployments make use of LetsEncrypt and certbot to auto-renew certificates.
 
 To bring up the KnowWhereGraph stack run
@@ -49,16 +58,6 @@ Use `make start-dev` and `make stop-dev` to use less resource-intensive containe
 The makefile has several convenience methods for updating services. They take the form
 
 `make update <service_name>`
-
-## System Requirements
-
-Running KnowWhereGraph requires a large vertically scaled system. The suggested specifications are shown below.
-
-| Component | Quantity |
-|-----------|----------|
-| Cores     | 15       |
-| Memory    | 512 GB   |
-| Disk      | 14 TB    |
 
 ## Development
 
