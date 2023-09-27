@@ -1,2 +1,4 @@
 ./nginx/logs/*
 .DS_STORE
+graphdb/license/
+nginx/local-certs/
