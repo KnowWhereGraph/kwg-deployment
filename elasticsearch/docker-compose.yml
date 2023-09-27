@@ -1,0 +1,10 @@
+services:
+  elasticsearch:
+    image: elasticsearch:8.0.0
+    environment:
+      # Password for the 'elastic' user (at least 6 characters)
+      - ELASTIC_PASSWORD=<ES_PASSOWORD_HERE>
+      - xpack.security.enabled=true
+      - discovery.type=single-node
+    networks:
+      - kwg_network

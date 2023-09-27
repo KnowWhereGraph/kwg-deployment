@@ -12,6 +12,8 @@ services:
     - ./nginx/templates:/etc/nginx/templates # NGINX config file
     - ./services/nginx/logs:/var/log/nginx # NGINX logs
     - /var/www:/usr/share/nginx/html # Static sites
-
+    - ./nginx/local-certs:/etc/letsencrypt/live/localhost # Local certificates
+    
     networks:
       - kwg_network
+

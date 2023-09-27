@@ -1,0 +1,4 @@
+networks:
+  kwg_network:
+    driver: bridge
+  

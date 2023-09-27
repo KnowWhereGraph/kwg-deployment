@@ -4,10 +4,34 @@ map "$request_method:$query_string" $is_get_without_query {
     default 0;
 }
 
+# Redirect http -> https
 server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+    server_name ${SERVER_NAME};
+    return 301 https://${SERVER_NAME}$request_uri;
+}
+
+server {
+    server_name ${SERVER_NAME};
+
+    # gzip compression
+    gzip on;
+    gzip_min_length  1100;
+    gzip_types text/css text/javascript text/xml text/plain text/x-component application/javascript application/x-javascript application/json application/xml  application/rss+xml font/truetype application/x-font-ttf font/opentype application/vnd.ms-fontobject image/svg+xml;
+    
+    # SSL Configuration
+    listen 443 ssl;
+    ssl_certificate /etc/letsencrypt/live/${SERVER_NAME}/cert.crt; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/${SERVER_NAME}/key.key; # managed by Certbot
+
     root /usr/share/nginx/html/;
     index index.html;
-    server_name ${SERVER_NAME};
+
+    # Certbot certificate challenge
+    location /.well-known/acme-challenge/ {
+        root /var/www;
+    }
 
     # faceted.search
     location / {
@@ -21,7 +45,7 @@ server {
 
     # phuzzy.link
     location ~* ^\/(lod|browse|static).* {
-        proxy_pass http://localhost:3001;
+        #proxy_pass http://${PHUZZY_HOSTNAME}:3001;
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection 'upgrade';
@@ -33,7 +57,7 @@ server {
         if ($is_get_without_query) {
             return 301 $scheme://$host/graphdb;
         }
-        proxy_pass http://localhost:3001;
+        proxy_pass http://${GRAPH_DB_HOSTNAME}:3001;
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection 'upgrade';
@@ -49,7 +73,7 @@ server {
 
     # GraphDB
     location /graphdb/ {
-        proxy_pass http://localhost:7200/;
+        proxy_pass http://${GRAPH_DB_HOSTNAME}:7200/;
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection 'upgrade';
@@ -60,5 +84,10 @@ server {
         proxy_read_timeout 300;
         proxy_connect_timeout 300;
         proxy_send_timeout 300;
+    }
+    
+    # VOID Descriptor
+    location /.well-known/void {
+        alias /var/www/void.ttl;
     }
 }
