@@ -1,8 +1,8 @@
 THIS_FILE := $(lastword $(MAKEFILE_LIST))
 .PHONY: help start stop restart
 
-BUILD_FILES := docker-compose.yml -f nginx/docker-compose.yml -f graphdb/docker-compose.yml -f elasticsearch/docker-compose.yml
-BUILD_FILES_DEVELOP := docker-compose.yml -f nginx/docker-compose-dev.yml -f graphdb/docker-compose-dev.yml -f elasticsearch/docker-compose.yml
+BUILD_FILES := docker-compose.yml -f nginx/docker-compose.yml -f graphdb/docker-compose.yml -f elasticsearch/docker-compose.yml -f prometheus/docker-compose.yml
+BUILD_FILES_DEVELOP := docker-compose.yml -f nginx/docker-compose-dev.yml -f graphdb/docker-compose-dev.yml -f elasticsearch/docker-compose.yml -f prometheus/docker-compose.yml
 
 help:	## Show this help.
 	@sed -ne '/@sed/!s/## //p' $(MAKEFILE_LIST)
