@@ -1,0 +1,19 @@
+services:
+  nginx:
+    image: nginx:bookworm
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      SERVER_NAME: "localhost" # your host here, without https:// or http://
+    env_file:
+      - 'variables.env'
+    volumes:
+    - ./nginx/templates:/etc/nginx/templates # NGINX config file
+    - ./services/nginx/logs:/var/log/nginx # NGINX logs
+    - /var/www:/usr/share/nginx/html # Static sites
+    - ./nginx/local-certs:/etc/letsencrypt/live/localhost # Local certificates
+    
+    networks:
+      - kwg_network
+

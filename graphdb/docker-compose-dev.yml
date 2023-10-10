@@ -1,0 +1,24 @@
+# Modified from https://github.com/Ontotext-AD/graphdb-docker/tree/master
+services:
+  graphdb:
+    container_name: graphdb
+    image: ontotext/graphdb:10.3.0
+    restart: unless-stopped
+    environment: 
+      ELASTIC_PASSWORD: "<PASSWORD_HERE>" # Abstraction leak from the elasticsearch deployment. Refer there for the pass
+      GDB_JAVA_OPTS: >-
+        -Dgraphdb.home=/opt/graphdb/home
+        -Dgraphdb.workbench.importDirectory=/opt/graphdb/home/graphdb-import
+        -Dgraphdb.external-url=https://localhost/graphdb/
+        -Denable-context-index=true
+        -Dentity-pool-implementation=transactional
+        -Dhealth.max.query.time.seconds=600
+        -Dgraphdb.append.request.id.headers=true
+        -Dreuse.vars.in.subselects=true
+        
+    volumes:
+      - ./services/graphdb-data:/opt/graphdb/home
+      - ./graphdb/license:/opt/graphdb/home/work
+#      - ./data:/opt/graphdb/home/graphdb-import # For linking local files to GraphDB for import
+    networks:
+      - kwg_network

@@ -1,0 +1,16 @@
+global:
+  scrape_interval: 60s
+scrape_configs:
+  - job_name: 'prometheus'
+    static_configs:
+    - targets: ['localhost:9090']
+  - job_name: 'GraphDB Infrastructure Metrics'
+    metrics_path: '/rest/monitor/infrastructure'
+    scrape_interval: 60s
+    static_configs:
+      - targets: ['graphdb:7200']
+  - job_name: 'GraphDB Data Structures Metrics'
+    metrics_path: '/rest/monitor/structures'
+    scrape_interval: 60s
+    static_configs:
+      - targets: ['graphdb:7200']
