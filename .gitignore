@@ -1,4 +1,6 @@
-./nginx/logs/*
 .DS_STORE
+nginx/logs
 graphdb/license/
 nginx/local-certs/
+services/
+grafana/persistent_config

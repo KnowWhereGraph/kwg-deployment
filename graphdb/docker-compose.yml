@@ -27,7 +27,7 @@ services:
       - 7200:7200
       - 7300:7300
     volumes:
-      - ./services/graphdb/graphdb-data:/opt/graphdb/home
+      - ./graphdb/graphdb-data:/opt/graphdb/home
       - ./graphdb/config:/opt/graphdb/dist/conf
       - ./graphdb/license:/opt/graphdb/home/work
 #      - ./data:/opt/graphdb/home/graphdb-import # For linking local files to GraphDB for import

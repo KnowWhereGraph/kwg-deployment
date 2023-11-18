@@ -10,7 +10,7 @@ services:
       - 'variables.env'
     volumes:
     - ./nginx/templates:/etc/nginx/templates # NGINX config file
-    - ./services/nginx/logs:/var/log/nginx # NGINX logs
-    - /var/www:/usr/share/nginx/html # Static sites
+    - ./nginx/logs:/var/log/nginx # NGINX logs
+    - ./nginx/sites:/usr/share/nginx/html # Static sites
     networks:
       - kwg_network

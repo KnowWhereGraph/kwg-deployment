@@ -15,7 +15,6 @@ services:
         -Dhealth.max.query.time.seconds=600
         -Dgraphdb.append.request.id.headers=true
         -Dreuse.vars.in.subselects=true
-        
     volumes:
       - ./services/graphdb-data:/opt/graphdb/home
       - ./graphdb/license:/opt/graphdb/home/work

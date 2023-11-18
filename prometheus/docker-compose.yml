@@ -1,10 +1,17 @@
 version: '3'
 services:
   prometheus:
-    image: prom/prometheus
+    image: prom/prometheus:v2.48.0
     volumes:
       - ./prometheus/:/etc/prometheus/
     ports:
       - 9090:9090
     networks:
       - kwg_network
+
+  node-exporter:
+    image: prom/node-exporter
+    networks:
+      - kwg_network
+    ports:
+      - 9100:9100

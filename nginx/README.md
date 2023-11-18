@@ -33,6 +33,10 @@ openssl req -x509 -out local-certs/cert.crt -keyout local-certs/key.key \
 
 The certificate will also have to be added to your local machine for your browser to trust; this is platform dependent.
 
+https://stackoverflow.com/questions/7580508/getting-chrome-to-accept-self-signed-localhost-certificate
+
+https://javorszky.co.uk/2019/11/06/get-firefox-to-trust-your-self-signed-certificates/
+
 ## Logging
 
-The NGINX logs are found in the container's /var/logs/nginx, which is mounted locally at `./services/nginx/logs`. For more verbose logging, refer to the NGINX Docker image documentation and modify the deployment script to include any additional flags.
+The NGINX logs are found in the container's /var/logs/nginx, which is mounted locally at `./nginx/logs`. For more verbose logging, refer to the NGINX Docker image documentation and modify the deployment script to include any additional flags.
