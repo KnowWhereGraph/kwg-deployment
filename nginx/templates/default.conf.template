@@ -8,6 +8,7 @@ map "$request_method:$query_string" $is_get_without_query {
 # Redirect http -> https
 # No issues here
 server {
+    allow ::1;
     listen 80 default_server;
     listen [::]:80 default_server;
     server_name ${SERVER_NAME};
@@ -106,6 +107,7 @@ server {
 
     location /stub_status {
         stub_status on;
+        allow        127.0.0.1;
     }
 
 }

@@ -8,11 +8,7 @@ The grafana deployment can be found on port `3000`` of the server that it's depl
 
 ## Setting Up
 
-There are several necessary steps to set Grafan up with the KWG stack.
-
-1. Set the password in the docker-compose file. This will be used to sign into the dashboard
-2. 
-
+Set the username and password in the docker-compose file; use these to sign into the dashboard. The data connection to prometheus and dashboard integrations are automatic and will be set up when the service is started.
 
 ## Development
 

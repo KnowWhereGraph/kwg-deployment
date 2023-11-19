@@ -5,8 +5,6 @@ services:
     ports:
       - "80:80"
       - "443:443"
-    environment:
-      SERVER_NAME: "localhost" # hostname here, without https:// or http://
     env_file:
       - 'variables.env'
     volumes:
@@ -14,14 +12,14 @@ services:
     - ./nginx/logs:/var/log/nginx # NGINX logs
     - ./nginx/sites:/usr/share/nginx/html # Static sites
     - ./nginx/local-certs:/etc/letsencrypt/live/localhost # Local certificates
-    depends_on:
+    depends_on: # These services need to exist for the nginx config to validate
       - graphdb
       - kwg-api
     networks:
       - kwg_network
 
   prometheus-nginx-exporter:
-    image: nginx/nginx-prometheus-exporter:0.9.0
+    image: nginx/nginx-prometheus-exporter:0.11.0
     container_name: prometheus-nginx-exporter
     restart: always
     ports:

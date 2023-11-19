@@ -5,7 +5,6 @@ services:
     image: ontotext/graphdb:10.3.0
     restart: unless-stopped
     environment: 
-      ELASTIC_PASSWORD: "<PASSWORD_HERE>"
       GDB_JAVA_OPTS: >-
         -Xms128g -Xmx256g
         -XX:MaxDirectMemorySize=256G
@@ -22,7 +21,8 @@ services:
         -Dhealth.max.query.time.seconds=600
         -Dgraphdb.append.request.id.headers=true
         -Dreuse.vars.in.subselects=true
-        -Dgraphdb.external-url=localhost/graphdb
+    env_file:
+      - 'variables.env'
     ports: 
       - 7200:7200
       - 7300:7300
