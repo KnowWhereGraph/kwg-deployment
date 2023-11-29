@@ -1,11 +1,14 @@
-# Function that returns whether the sparql/ endpoint has an associated query body 
+# Function that returns whether the sparql/ endpoint has an associated query body
+# No issues here
 map "$request_method:$query_string" $is_get_without_query {
     ~*^GET:[\s]*$ 1;
     default 0;
 }
 
 # Redirect http -> https
+# No issues here
 server {
+    allow ::1;
     listen 80 default_server;
     listen [::]:80 default_server;
     server_name ${SERVER_NAME};
@@ -14,7 +17,6 @@ server {
 
 server {
     server_name ${SERVER_NAME};
-
     # gzip compression
     gzip on;
     gzip_min_length  1100;
@@ -25,17 +27,32 @@ server {
     ssl_certificate /etc/letsencrypt/live/${SERVER_NAME}/cert.crt; # managed by Certbot
     ssl_certificate_key /etc/letsencrypt/live/${SERVER_NAME}/key.key; # managed by Certbot
 
-    root /usr/share/nginx/html/;
-    index index.html;
-
     # Certbot certificate challenge
     location /.well-known/acme-challenge/ {
         root /var/www;
     }
 
-    # faceted.search
-    location / {
-        try_files $uri $uri/ /index.html;
+    # API (performs redirects for things at 'lod/resource/*' and 'lod/ontology/'and has a redoc/docs page)
+    # Example: https://stko-kwg.geog.ucsb.edu/lod/resource/kwgr:hazard.1183609.5434007 (Note that the redirect is handled by the API, the empty page is fine)
+    # Example: localhost/redoc
+    # Example: localhost/lod/resource/kwgr:hazard.1183609.5434007
+    # DEVNOTE: Having issues getting the redoc & doc pages to render
+    location ~* ^\/(docs|redoc|lod/resource|lod/ontology).* {
+        proxy_pass http://${API_HOSTNAME}:8080;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Forwarded-Host $host;
+        proxy_set_header X-Forwarded-Prefix /;
+    }
+
+    # Static Node Browser
+    # Regular webapp that renders content
+    # Example: https://stko-kwg.geog.ucsb.edu/browse/#kwgr:NWZone.30067
+    # Example: https://localhost/browse/#kwgr:NWZone.30067
+    # DEVNOTE: Infinite index.html redirects
+    #location ~* ^/(?:search)?(.*)$ {
+    location ^/(?:browse|static)?(.*)$ {
+        alias /usr/share/nginx/html/node-browser/index.html;
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection 'upgrade';
@@ -43,21 +60,13 @@ server {
         proxy_cache_bypass $http_upgrade;
     }
 
-    # phuzzy.link
-    location ~* ^\/(lod|browse|static).* {
-        #proxy_pass http://${PHUZZY_HOSTNAME}:3001;
-        proxy_http_version 1.1;
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection 'upgrade';
-        proxy_set_header Host $host;
-        proxy_cache_bypass $http_upgrade;
-    }
-
+    # Forward the SPARQL endpoint to GraphDB
+    # DEVNOTE: This can be ignored
     location ~* ^\/sparql.* {
         if ($is_get_without_query) {
             return 301 $scheme://$host/graphdb;
         }
-        proxy_pass http://${GRAPH_DB_HOSTNAME}:3001;
+        #proxy_pass http://${GRAPH_DB_HOSTNAME}:7200/repositories/${CURRENT_REPOSITORY_NAME};
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection 'upgrade';
@@ -66,12 +75,16 @@ server {
     }
 
     #Static KW Panels Application
+    # This works fine for the most part, there's a CORS issue that I'll look at later
+    # Example: https://stko-kwg.geog.ucsb.edu/kw-panels/ (see the cors issue on prod too. oops)
+    # Example localhost/kw-panels
     location /kw-panels/ {
-        alias /var/www/kw-panels/ ;
+        alias /usr/share/nginx/html/kw-panels/ ;
         index index.html;
     }
 
     # GraphDB
+    # This works like a charm, no issue here
     location /graphdb/ {
         proxy_pass http://${GRAPH_DB_HOSTNAME}:7200/;
         proxy_http_version 1.1;
@@ -87,7 +100,14 @@ server {
     }
     
     # VOID Descriptor
+    # This works like a charm, no issue here
     location /.well-known/void {
-        alias /var/www/void.ttl;
+        alias /usr/share/nginx/html/void/void.ttl;
     }
+
+    location /stub_status {
+        stub_status on;
+        allow        127.0.0.1;
+    }
+
 }

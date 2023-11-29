@@ -1,8 +1,8 @@
 THIS_FILE := $(lastword $(MAKEFILE_LIST))
 .PHONY: help start stop restart
 
-BUILD_FILES := docker-compose.yml -f nginx/docker-compose.yml -f graphdb/docker-compose.yml -f elasticsearch/docker-compose.yml -f prometheus/docker-compose.yml
-BUILD_FILES_DEVELOP := docker-compose.yml -f nginx/docker-compose-dev.yml -f graphdb/docker-compose-dev.yml -f elasticsearch/docker-compose.yml -f prometheus/docker-compose.yml
+BUILD_FILES := docker-compose.yml -f nginx/docker-compose.yml -f graphdb/docker-compose.prod.yaml -f elasticsearch/docker-compose.yml -f prometheus/docker-compose.yml -f kwg-api/docker-compose.prod.yaml 
+BUILD_FILES_DEVELOP := docker-compose.yml -f nginx/docker-compose.yaml -f graphdb/docker-compose.local.yaml -f elasticsearch/docker-compose.yml -f prometheus/docker-compose.yml -f kwg-api/docker-compose.local.yaml -f grafana/docker-compose.yml
 
 help:	## Show this help.
 	@sed -ne '/@sed/!s/## //p' $(MAKEFILE_LIST)
@@ -27,3 +27,5 @@ update-graphdb: # Replaces the existing GraphDB container with a new one
 	docker-compose -f docker-compose.yml -f graphdb/docker-compose.develop.yml up -d $(c)
 update-elasticsearch: # Replaces the existing ES container with a new one
 	docker-compose -f docker-compose.yml -f elasticsearch/docker-compose.develop.yml up -d $(c)
+update-nginx: # Replaces the existing nginx container with a new one
+	docker-compose -f docker-compose.yml -f nginx/docker-compose-dev.yml up -d $(c)

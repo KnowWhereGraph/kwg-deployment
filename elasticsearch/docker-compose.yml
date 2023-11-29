@@ -3,9 +3,23 @@ services:
     image: elasticsearch:8.0.0
     container_name: elasticsearch
     environment:
-      # Password for the 'elastic' user (at least 6 characters)
-      - ELASTIC_PASSWORD=<ES_PASSOWORD_HERE>
       - xpack.security.enabled=true
       - discovery.type=single-node
+    ports:
+      - "9200:9200"
     networks:
       - kwg_network
+    env_file:
+      - 'variables.env'
+  elasticsearch-exporter:
+      image: quay.io/prometheuscommunity/elasticsearch-exporter:latest
+      container_name: elasticsearch-exporter
+      command:
+        - '--es.uri=http://elastic:1234@elasticsearch:9200'
+      restart: always
+      depends_on:
+        - elasticsearch
+      ports:
+        - "127.0.0.1:9114:9114"
+      networks:
+        - kwg_network
