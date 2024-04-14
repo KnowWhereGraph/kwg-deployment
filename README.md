@@ -18,6 +18,10 @@ There are a number of convenience commands in the makefile to manage the deploym
 
 Regardless of the environment, the web applications need to be added to the project from their various repositories. Refer to each application on how to build it, using the config that you need and add them to `nginx/sites`. For example, when the environment is for staging, build the staging versions of the webapps and place the build in the `nginx/sites`` folder. When the environment is for a localhost deployment, use the associated localhost builds. The nginx config file has rules that map the URI space to the specific folder.
 
+1. Build the faceted search files
+2. Build the node browser files
+3. Build the kwg-api image
+
 ### Production Environment
 
 Running KnowWhereGraph requires a large vertically scaled system. The suggested specifications are shown below.
@@ -54,11 +58,18 @@ Because of KnowWhereGraph's graph resource requirements, it's difficult to creat
 | Memory    | 8 GB   |
 | Disk      | 20 GB     |
 
+#### NGINX Certificates
+
 LetsEncrypt can't be used for local HTTPS . More information can be found on LetsEncrypt's [website](https://letsencrypt.org/docs/certificates-for-localhost/). This deployment architecture makes use of self signed certificates for localhost.
 
-The environmental variables should be updated to match the correct URI space and authentication patterns.
+1. Generate the local certs
+2. Name the `*.cert` file `cert.cert`
+3. Name the `*.key` file `key.key`
+4. Place them in `./nginx/local-certs`
 
-Use `make start-dev` and `make stop-dev` to use less resource-intensive containers.
+#### Running Locally 
+
+Use `make start-dev` and `make stop-dev` to use less resource-intensive and dev environment.
 
 ### Updating Services
 
@@ -90,7 +101,7 @@ To make changes, issue a pull request to the `main` branch. The deployment syste
 
 ### Adding New Services
 
-New services should come with a README, a docker-compose.yml, and an optional Dockerfile. The makefile should be refactored to include the new service. If the service is resource intensive, provide a second docker-compose file that should work for local development.
+New services should come with a README, a docker-compose.yaml, and an optional Dockerfile. The makefile should be refactored to include the new service. If the service is resource intensive, provide a second docker-compose file that should work for local development.
 
 ### Adding new HTTP Sites
 

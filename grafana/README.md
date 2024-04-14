@@ -15,7 +15,7 @@ Set the username and password in the docker-compose file; use these to sign into
 Some important notes:
 
 1. There are dashboard JSON definitions. These are JSON files that are the actual dashboard controls.
-2. There are dashboard yml definitions. These are yml files that point to the JSON definitions.
+2. There are dashboard yaml definitions. These are yaml files that point to the JSON definitions.
 3. The two definitions are mounted in different locations (check the docker-compose)
 4. There is a `persistent_config` folder that's created by the Grafana process. This can be deleted between deployments
 5. There is a `config` folder that contains important dashboard and Grafana config. Don't delete this

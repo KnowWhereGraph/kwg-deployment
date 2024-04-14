@@ -31,11 +31,11 @@ server {
 
     # Static Faceted Search
     location /  {
-        alias /usr/share/nginx/html/faceted-search/;
+        alias /usr/share/nginx/html/kwg-faceted-search/dist/faceted-search/;
     }
 
     location /search {
-        alias /usr/share/nginx/html/faceted-search/;
+        alias /usr/share/nginx/html/kwg-faceted-search/dist/faceted-search/;
     }
 
     # API (performs redirects for things at 'lod/resource/*' and 'lod/ontology/'and has a redoc/docs page)

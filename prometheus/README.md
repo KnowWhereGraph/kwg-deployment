@@ -10,4 +10,4 @@ Rather than using Prometheus to view the metrics, the recommended way is to view
 
 ## Adding Metrics
 
-To add metrics, make new additions to the `prometheus.yml` file. The service name should be the corresponding container name, as these reside in the same docker network.
+To add metrics, make new additions to the `prometheus.yaml` file. The service name should be the corresponding container name, as these reside in the same docker network.
