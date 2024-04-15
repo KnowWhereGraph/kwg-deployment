@@ -49,10 +49,9 @@ server {
 
     # Static Node Browser
     location /browse {
-
-        alias /usr/share/nginx/html/node-browser/;
-
+        # alias /usr/share/nginx/html/node-browser/node-browser/dist/node-browser/;
         # these settings rewrite content on the fly to account for the context path
+        try_files $uri $uri/ /index.html;
         proxy_set_header Accept-Encoding "";
 
         # filter additional mime types
