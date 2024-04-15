@@ -6,21 +6,34 @@ KnowWhereGraph's deployment system
 
 KnowWhereGraph's deployment is managed through docker-compose. It consists of several networked services and static sites. For an overview of the architecture and services involved, visit the [architecture](./architecture/) page.
 
-Each service has its own docker-compose and optional Dockerfile, which are composed to create the stack. Some services are coupled with prometheus logging scrapers. In these cases, the associated scraper is included in the services' docker-compose file.
+Each service has its own docker-compose and optional Dockerfile, which are composed to create the stack. When the behavior of a service depends on where it's deployed (locally, on the staging server, on the production server) there will be different docker-compose files for each environment. When the service is agnostic, there will be only one docker-compose file.
+
+Some services are coupled with prometheus logging scrapers. In these cases, the associated scraper is included in the services' docker-compose file.
 
 For monitoring the deployment, refer to the [Grafana Readme](./grafana/README.md).
 
 ## Deploying
 
-There are a number of convenience commands in the makefile to manage the deployment. Before running them, ensure that *all* necessary repositories are present by running `sh fetch-repositories.sh`.
+There are a number of convenience commands in the makefile to manage the deployment. The deployment has three modes:
+
+1. Local: When the stack is brought up on your own machine
+2. Stage: When the stack is brought up on staging.knowwheregraph.org
+3. Prod: When the stack is brought up on stko-kwg.geog.ucsb.edu
+
+For a complete list of commands, run
+
+`make help`
 
 ### All Environments
 
-Regardless of the environment, the web applications need to be added to the project from their various repositories. Refer to each application on how to build it, using the config that you need and add them to `nginx/sites`. For example, when the environment is for staging, build the staging versions of the webapps and place the build in the `nginx/sites`` folder. When the environment is for a localhost deployment, use the associated localhost builds. The nginx config file has rules that map the URI space to the specific folder.
+The following steps aren't automated and will need to be done *before* bringing the stack online.
 
-1. Build the faceted search files
-2. Build the node browser files
-3. Build the kwg-api image
+1. Run `fetch-repositories.sh` to retrieve the web-applications and API
+2. Build the faceted search files
+3. Build the node browser files
+4. Put the ssl certificates in `nginx/local-certs`
+5. Put the GraphDB license in `graphdb/license`
+6. Modify `variables.env` to specify the name of the GraphDB repository the `sparql/` endpoint should query
 
 ### Production Environment
 
@@ -32,23 +45,19 @@ Running KnowWhereGraph requires a large vertically scaled system. The suggested 
 | Memory    | 512 GB   |
 | Disk      | 14 TB    |
 
-Production deployments make use of LetsEncrypt and certbot to auto-renew certificates.
+The production docker-compose files are designed specifically to run on https://stko-kwg.geog.ucsb.edu. If this address ever changes, the production docker-compose files should be modified accordingly.
 
 To bring up the KnowWhereGraph stack run
 
-`make start`
+`make start-prod`
 
 to bring down the stack,
 
-`make stop`
+`make stop-prod`
 
-For a complete list of commands, run
+### Staging Environment
 
-`make help`
-
-The environmental variables should be updated during production deployments to match the correct URI space and authentication patterns.
-
-### Development/Localhost Environment
+### Local Environment
 
 Because of KnowWhereGraph's graph resource requirements, it's difficult to create an environment that mimics a production setting. To test, it's suggested that the system is scaled down to match the table below. The lower system requirements come at the expense of not being able to load much data into the graph. Adjust the settings as needed based on data testing needs.
 
@@ -68,18 +77,6 @@ LetsEncrypt can't be used for local HTTPS . More information can be found on Let
 4. Place them in `./nginx/local-certs`
 
 #### Running Locally 
-
-Use `make start-dev` and `make stop-dev` to use less resource-intensive and dev environment.
-
-### Updating Services
-
-The makefile has several convenience methods for updating services. They take the form
-
-`make update-<service_name>`
-
-This will remove the service and replace it with a new one. Note that this will cause a brief service interruption; rolling updates aren't supported at this time.
-
-Check the makefile for available update commands
 
 ### Updating Environmental Variables
 
@@ -101,7 +98,7 @@ To make changes, issue a pull request to the `main` branch. The deployment syste
 
 ### Adding New Services
 
-New services should come with a README, a docker-compose.yaml, and an optional Dockerfile. The makefile should be refactored to include the new service. If the service is resource intensive, provide a second docker-compose file that should work for local development.
+New services should come with a README, a docker-compose.yaml, and an optional Dockerfile. The makefile should be refactored to include the new service. If the service is resource intensive or requires different behavior for different deployment locations, provide a additional docker-compose files (docker-compose.local.yaml. docker-compose.stage.yaml).
 
 ### Adding new HTTP Sites
 
@@ -118,4 +115,5 @@ When reviewing architecture changes
   - Is there new documentation that needs to be added?
   - Will this change possible effect other services?
   - Was the makefile updated?
+  - Will this work locally, on staging, and on production?
 - Are there any stakeholders that might need to be notified of the change?

@@ -8,7 +8,7 @@ services:
       GDB_JAVA_OPTS: >-
         -Dgraphdb.home=/opt/graphdb/home
         -Dgraphdb.workbench.importDirectory=/opt/graphdb/home/graphdb-import
-        -Dgraphdb.external-url=https://localhost/graphdb/
+        -Dgraphdb.external-url=https://staging.knowwheregraph.org/graphdb/
         -Denable-context-index=true
         -Dentity-pool-implementation=transactional
         -Dhealth.max.query.time.seconds=600

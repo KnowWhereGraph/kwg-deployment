@@ -10,10 +10,10 @@ services:
         -XX:MaxDirectMemorySize=256G
         -Dgraphdb.global.page.cache=true
         -Dgraphdb.home=/opt/graphdb/home
-        -Dgraphdb.page.cache.size=20g
+        -Dgraphdb.page.cache.size=30g
         -Ddefault.min.distinct.threshold=1g
         -Dgraphdb.workbench.importDirectory=/opt/graphdb/home/graphdb-import
-        -Dgraphdb.external-url=https://localhost/graphdb/
+        -Dgraphdb.external-url=https://stko-kwg.geog.ucsb.edu/graphdb/
         -Dgraphdb.workbench.cors.enable=true
         -Dgraphdb.workbench.cors.origin=*
         -Denable-context-index=true

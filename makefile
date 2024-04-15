@@ -1,31 +1,22 @@
 THIS_FILE := $(lastword $(MAKEFILE_LIST))
 .PHONY: help start stop restart
 
-BUILD_FILES := docker-compose.yaml -f nginx/docker-compose.yaml -f graphdb/docker-compose.prod.yaml -f elasticsearch/docker-compose.yaml -f prometheus/docker-compose.yaml -f kwg-api/docker-compose.prod.yaml 
-BUILD_FILES_DEVELOP := docker-compose.yaml -f nginx/docker-compose.yaml -f graphdb/docker-compose.local.yaml -f elasticsearch/docker-compose.yaml -f prometheus/docker-compose.yaml -f kwg-api/docker-compose.local.yaml -f grafana/docker-compose.yaml
+BUILD_FILES_PROD := docker-compose.yaml -f nginx/docker-compose.yaml -f graphdb/docker-compose.prod.yaml -f elasticsearch/docker-compose.yaml -f prometheus/docker-compose.yaml -f kwg-api/docker-compose.prod.yaml 
+BUILD_FILES_LOCAL := docker-compose.yaml -f nginx/docker-compose.yaml -f graphdb/docker-compose.local.yaml -f elasticsearch/docker-compose.yaml -f prometheus/docker-compose.yaml -f kwg-api/docker-compose.local.yaml -f grafana/docker-compose.yaml
+BUILD_FILES_STAGE := docker-compose.yaml -f nginx/docker-compose.yaml -f graphdb/docker-compose.stage.yaml -f elasticsearch/docker-compose.yaml -f prometheus/docker-compose.yaml -f kwg-api/docker-compose.local.yaml -f grafana/docker-compose.yaml
 
 help:	## Show this help.
 	@sed -ne '/@sed/!s/## //p' $(MAKEFILE_LIST)
 
-start:	## Brings the stack online, building images if needed
-	docker-compose -f ${BUILD_FILES} up -d $(c)
-stop:	## Brings the stack offline
-	docker-compose -f ${BUILD_FILES} down $(c)
-restart:	## Restarts the stack, does *not* do a rolling update
-	docker-compose -f ${BUILD_FILES} stop $(c)
-	docker-compose -f ${BUILD_FILES} up -d $(c)
-start-dev:	## Brings the stack online, building images if needed
-	docker-compose -f ${BUILD_FILES_DEVELOP} up -d $(c)
-stop-dev:	## Brings the stack offline
-	docker-compose -f ${BUILD_FILES_DEVELOP} down $(c)
-restart-dev:
-	docker-compose -f ${BUILD_FILES_DEVELOP} stop $(c)
-	docker-compose -f ${BUILD_FILES_DEVELOP} up -d $(c)
-update-graphdb-dev: # Replaces the existing GraphDB container with a new one
-	docker-compose -f docker-compose.yaml -f graphdb/docker-compose.develop.yaml up -d $(c)
-update-graphdb: # Replaces the existing GraphDB container with a new one
-	docker-compose -f docker-compose.yaml -f graphdb/docker-compose.develop.yaml up -d $(c)
-update-elasticsearch: # Replaces the existing ES container with a new one
-	docker-compose -f docker-compose.yaml -f elasticsearch/docker-compose.develop.yaml up -d $(c)
-update-nginx: # Replaces the existing nginx container with a new one
-	docker-compose -f docker-compose.yaml -f nginx/docker-compose-dev.yaml up -d $(c)
+start-prod:	## Brings the stack online, for https://stko-kwg.geog.ucsb.edu building images if needed
+	docker-compose -f ${BUILD_FILES_PROD} up -d $(c)
+stop-prod:	## Brings the stack offline
+	docker-compose -f ${BUILD_FILES_PROD} down $(c)
+start-local:	## Brings the stack online, building images if needed
+	docker-compose -f ${BUILD_FILES_LOCAL} up -d $(c)
+stop-local:	## Brings the stack offline
+	docker-compose -f ${BUILD_FILES_LOCAL} down $(c)
+start-stage:	## Brings the stack online for staging.knowwheregraph.org, building images if needed
+	docker-compose -f ${BUILD_FILES_STAGE} up -d $(c)
+stop-stage:	## Brings the stack offline for staging.knowwheregraph.org
+	docker-compose -f ${BUILD_FILES_STAGE} down $(c)
