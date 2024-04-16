@@ -19,7 +19,7 @@ services:
       - kwg_network
 
   prometheus-nginx-exporter:
-    image: nginx/nginx-prometheus-exporter:0.11.0
+    image: nginx/nginx-prometheus-exporter:1.1
     container_name: prometheus-nginx-exporter
     restart: always
     ports:
