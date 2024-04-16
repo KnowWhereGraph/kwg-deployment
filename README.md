@@ -34,6 +34,7 @@ The following steps aren't automated and will need to be done *before* bringing 
 4. Put the ssl certificates in `nginx/local-certs`
 5. Put the GraphDB license in `graphdb/license`
 6. Modify `variables.env` to specify the name of the GraphDB repository the `sparql/` endpoint should query
+7. Modify `variables.env` with the Elasticsearch password
 
 ### Production Environment
 

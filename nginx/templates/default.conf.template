@@ -1,9 +1,3 @@
-# Function that returns whether the sparql/ endpoint has an associated query body
-map "$request_method:$query_string" $is_get_without_query {
-    ~*^GET:[\s]*$ 1;
-    default 0;
-}
-
 # Redirect http -> https
 server {
     listen 80 default_server;
@@ -29,7 +23,7 @@ server {
         root /var/www;
     }
 
-    # Static Faceted Search
+    # Server root directs to the faceted search
     location /  {
         alias /usr/share/nginx/html/kwg-faceted-search/dist/faceted-search/;
     }
@@ -38,7 +32,7 @@ server {
         alias /usr/share/nginx/html/kwg-faceted-search/dist/faceted-search/;
     }
 
-    # API (performs redirects for things at 'lod/resource/*' and 'lod/ontology/'and has a redoc/docs page)
+    # API (performs redirects for things at 'lod/resource/*' and 'lod/ontology/'; also has a /redoc and /docs page)
     location ~* ^\/(openapi.json|docs|redoc|lod/resource|lod/ontology).* {
         proxy_pass http://${API_HOSTNAME}:8080;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -49,9 +43,7 @@ server {
 
     # Static Node Browser
     location /browse {
-        # alias /usr/share/nginx/html/node-browser/node-browser/dist/node-browser/;
-        # these settings rewrite content on the fly to account for the context path
-        try_files $uri $uri/ /index.html;
+        alias /usr/share/nginx/html/node-browser/node-browser/dist/node-browser/;
         proxy_set_header Accept-Encoding "";
 
         # filter additional mime types
@@ -75,9 +67,6 @@ server {
 
     # Forward the SPARQL endpoint to GraphDB
     location /sparql {
-        if ($is_get_without_query) {
-            return 301 $scheme://$host/graphdb;
-        }
         proxy_pass http://${GRAPH_DB_HOSTNAME}:7200/repositories/${CURRENT_REPOSITORY_NAME};
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
