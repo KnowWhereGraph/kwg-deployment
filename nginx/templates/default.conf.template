@@ -23,6 +23,11 @@ server {
         root /var/www;
     }
 
+   location /stub_status {
+        stub_status on;
+    }
+
+
     # Server root directs to the faceted search
     location /  {
         alias /usr/share/nginx/html/kwg-faceted-search/dist/faceted-search/;
