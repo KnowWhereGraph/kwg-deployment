@@ -15,8 +15,8 @@ server {
     
     # SSL Configuration
     listen 443 ssl;
-    ssl_certificate /etc/letsencrypt/live/${SERVER_NAME}/cert.crt; # managed by Certbot
-    ssl_certificate_key /etc/letsencrypt/live/${SERVER_NAME}/key.key; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/${SERVER_NAME}/cert.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/${SERVER_NAME}/key.pem; # managed by Certbot
 
     # Certbot certificate challenge
     location /.well-known/acme-challenge/ {

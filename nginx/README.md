@@ -25,7 +25,7 @@ Certificates for local development need to be manually generated and added to th
 From the LetsEncrypt website, local certificates can be created by running the following from this directory,
 
 ```bash
-openssl req -x509 -out local-certs/cert.crt -keyout local-certs/key.key \
+openssl req -x509 -out local-certs/cert.pem -keyout local-certs/key.pem \
   -newkey rsa:2048 -nodes -sha256 \
   -subj '/CN=localhost' -extensions EXT -config <( \
    printf "[dn]\nCN=localhost\n[req]\ndistinguished_name = dn\n[EXT]\nsubjectAltName=DNS:localhost\nkeyUsage=digitalSignature\nextendedKeyUsage=serverAuth")
