@@ -35,6 +35,7 @@ The following steps aren't automated and will need to be done *before* bringing 
 5. Put the GraphDB license in `graphdb/license`
 6. Modify `variables.env` to specify the name of the GraphDB repository the `sparql/` endpoint should query
 7. Modify `variables.env` with the Elasticsearch password
+8. Modify `variables.env` with the server name - without `http` or `www` (localhost/staging.knowwheregraph.org/stko-kwg.geog.ucsb.edu)
 
 ### Production Environment
 
@@ -57,6 +58,16 @@ to bring down the stack,
 `make stop-prod`
 
 ### Staging Environment
+
+The staging environment is meant to be run on https://staging.knowwheregraph.org.
+
+To run the staging stack,
+
+`make start-stage`
+
+to bring down the stack,
+
+`make stop-stage`
 
 ### Local Environment
 

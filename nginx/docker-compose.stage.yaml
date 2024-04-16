@@ -1,0 +1,34 @@
+services:
+  nginx:
+    image: nginx:bookworm
+    container_name: nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    env_file:
+      - 'variables.env'
+    volumes:
+    - ./nginx/templates:/etc/nginx/templates # NGINX config file
+    - ./nginx/logs:/var/log/nginx # NGINX logs
+    - ./nginx/sites:/usr/share/nginx/html # Static sites
+    - ./nginx/local-certs:/etc/letsencrypt/live/staging.knowwheregraph.org # Local certificates
+    depends_on: # These services need to exist for the nginx config to validate
+      - graphdb
+      - kwg-api
+    networks:
+      - kwg_network
+
+  prometheus-nginx-exporter:
+    image: nginx/nginx-prometheus-exporter:0.11.0
+    container_name: prometheus-nginx-exporter
+    restart: always
+    ports:
+      - "9113:9113"
+    command:
+      - -nginx.scrape-uri=http://nginx/stub_status
+    depends_on:
+      - nginx
+    expose: 
+      - 9113
+    networks:
+      - kwg_network
