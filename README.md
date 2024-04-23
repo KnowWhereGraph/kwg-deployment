@@ -88,7 +88,7 @@ LetsEncrypt can't be used for local HTTPS . More information can be found on Let
 3. Name the `*.key` file `key.key`
 4. Place them in `./nginx/local-certs`
 
-#### Running Locally 
+#### Running Locally
 
 ### Updating Environmental Variables
 
@@ -103,6 +103,12 @@ Environmental variables are kept in the `variables.env`. These variables are use
 `SERVER_NAME`: The hostname where things are deployed (localhost | staging.knowwheregraph.org | stko-kwg.geog.ucsb.edu). Without http or https
 
 `CURRENT_REPOSITORY_NAME`: Used as the repository that `/sparql` endpoint requests are sent to
+
+## Updating Services
+
+Right now, when a single service is updated, the stack needs to be brought down, and then back up. This is inconvenient, and will be addressed in the future.
+
+To update any of the webapps, use `git pull` to update them from source and follow the repository readme for building. Restarting nxing isn't required for the changes to become live.
 
 ## Development
 
