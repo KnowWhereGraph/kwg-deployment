@@ -14,10 +14,10 @@ services:
         -Dhealth.max.query.time.seconds=600
         -Dgraphdb.append.request.id.headers=true
         -Dreuse.vars.in.subselects=true
+        -Dgraphdb.page.cache.size=50g
     volumes:
-      - ./graphdb/graphdb-data:/opt/graphdb/home
+      - ./graphdb/graphdb-data/home:/opt/graphdb/home/
       - ./graphdb/license:/opt/graphdb/home/work
-#      - ./data:/opt/graphdb/home/graphdb-import # For linking local files to GraphDB for import
     env_file:
       - 'variables.env'
     ports: 
