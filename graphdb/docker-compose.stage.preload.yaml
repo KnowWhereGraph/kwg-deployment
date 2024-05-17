@@ -6,7 +6,7 @@ services:
     environment: 
       GDB_JAVA_OPTS: >-
         -Dgraphdb.home=/opt/graphdb/home
-        -Dgraphdb.workbench.importDirectory=/opt/graphdb/home/graphdb-import
+        -Dgraphdb.workbench.importDirectory=/opt/graphdb/home/import-data
         -Dgraphdb.external-url=https://staging.knowwheregraph.org/graphdb/
         -Denable-context-index=true
         -Dentity-pool-implementation=transactional
@@ -16,13 +16,15 @@ services:
         -Dgraphdb.page.cache.size=50g
     volumes:
       - ./graphdb/graphdb-data/home:/opt/graphdb/home/
-      - ./graphdb/graphdb-data/import-data:/opt/graphdb/home/import-data
+      - ./graphdb/graphdb-data/work/data/V7-SantaBarbara/aboxes-trig:/opt/graphdb/home/import-data
       - ./graphdb/license:/opt/graphdb/home/work
     env_file:
       - 'variables.env'
+    stdin_open: true
+    tty: true   
     ports: 
       - 7200:7200
       - 7300:7300
     networks:
       - kwg_network
-    entrypoint: [ "/opt/graphdb/dist/bin/importrdf", "preload", "--force", "--recursive", "-q", "/tmp", "-c", "/opt/graphdb/graphdb-repo-config.ttl", "/opt/graphdb/home/graphdb-import" ]
+    entrypoint: [ "/opt/graphdb/dist/bin/importrdf", "preload", "-f", "-x", "-r", "-Xmx144g", "-q", "/tmp", "-c", "/opt/graphdb/home/data/repositories/KWG/config.ttl", "/opt/graphdb/home/import-data" ]
