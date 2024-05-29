@@ -32,4 +32,4 @@ The dashboards are taken from pre-designed packages, which are available on the 
 - [Prometheus](https://grafana.com/grafana/dashboards/3662-prometheus-2-0-overview/)
 - [Node Exporter](https://grafana.com/grafana/dashboards/1860-node-exporter-full/)
 - [NGINX](https://grafana.com/grafana/dashboards/14900-nginx/)
-- [KWG-API](https://grafana.com/grafana/dashboards/16110-fastapi-observability/)
+- KWG-API: Custom

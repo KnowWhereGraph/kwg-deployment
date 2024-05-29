@@ -11,7 +11,7 @@ services:
     - ./nginx/templates:/etc/nginx/templates # NGINX config file
     - ./nginx/logs:/var/log/nginx # NGINX logs
     - ./nginx/sites:/usr/share/nginx/html # Static sites
-    - ./nginx/local-certs:/etc/letsencrypt/live/localhost # Local certificates
+    - ./nginx/local-certs:/etc/letsencrypt/live/stko-kwg.geog.ucsb.edu # Local certificates
     depends_on: # These services need to exist for the nginx config to validate
       - graphdb
       - kwg-api
@@ -19,7 +19,7 @@ services:
       - kwg_network
 
   prometheus-nginx-exporter:
-    image: nginx/nginx-prometheus-exporter:0.11.0
+    image: nginx/nginx-prometheus-exporter:1.1
     container_name: prometheus-nginx-exporter
     restart: always
     ports:

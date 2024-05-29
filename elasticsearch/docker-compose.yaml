@@ -11,6 +11,7 @@ services:
       - kwg_network
     env_file:
       - 'variables.env'
+
   elasticsearch-exporter:
       image: quay.io/prometheuscommunity/elasticsearch-exporter:latest
       container_name: elasticsearch-exporter
