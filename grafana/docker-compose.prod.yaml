@@ -1,0 +1,21 @@
+services:
+  grafana:
+      image: grafana/grafana:10.4.2
+      container_name: grafana
+      volumes:
+        - ./grafana/persistent_config:/var/lib/grafana # Persists grafana configurations
+        - ./grafana/provisioning:/etc/grafana/provisioning # Source for the data source and dashboard definitions
+        - ./grafana/config/grafana.prod.ini:/etc/grafana/grafana.ini # Grafana custom config
+        - ./grafana/config/dashboards:/etc/grafana/dashboards # Dashboard JSON definitions
+      environment:
+        - GF_USERS_ALLOW_SIGN_UP=false
+        - GF_PATHS_CONFIG=/etc/grafana/grafana.ini
+        - GF_SECURITY_ADMIN_USER=admin
+        - GF_SECURITY_ADMIN_PASSWORD=password
+      env_file:
+        - 'variables.env'
+      restart: unless-stopped
+      ports:
+        - 3000:3000
+      networks:
+        - kwg_network
