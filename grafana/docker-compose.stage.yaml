@@ -5,7 +5,7 @@ services:
       volumes:
         - ./grafana/persistent_config:/var/lib/grafana # Persists grafana configurations
         - ./grafana/provisioning:/etc/grafana/provisioning # Source for the data source and dashboard definitions
-        - ./grafana/config/grafana.ini:/etc/grafana/grafana.ini # Grafana custom config
+        - ./grafana/config/grafana.stage.ini:/etc/grafana/grafana.ini # Grafana custom config
         - ./grafana/config/dashboards:/etc/grafana/dashboards # Dashboard JSON definitions
       environment:
         - GF_USERS_ALLOW_SIGN_UP=false

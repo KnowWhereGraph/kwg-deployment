@@ -8,6 +8,10 @@ services:
       - 9090:9090
     networks:
       - kwg_network
+    command:
+      - --web.route-prefix=/
+      - --config.file=/etc/prometheus/prometheus.yml
+
 
   node-exporter:
     image: prom/node-exporter
