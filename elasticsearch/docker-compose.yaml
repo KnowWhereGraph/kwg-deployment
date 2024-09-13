@@ -1,6 +1,6 @@
 services:
   elasticsearch:
-    image: elasticsearch:8.11.1
+    image: elasticsearch:8.15.1
     container_name: elasticsearch
     environment:
       - xpack.security.enabled=true
