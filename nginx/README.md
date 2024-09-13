@@ -40,3 +40,7 @@ https://javorszky.co.uk/2019/11/06/get-firefox-to-trust-your-self-signed-certifi
 ## Logging
 
 The NGINX logs are found in the container's /var/logs/nginx, which is mounted locally at `./nginx/logs`. For more verbose logging, refer to the NGINX Docker image documentation and modify the deployment script to include any additional flags.
+
+## Metrics
+
+Metrics are exported to prometheus through the nginx/nginx-prometheus-exporter container, which is defined in the `metrics/` folder.
