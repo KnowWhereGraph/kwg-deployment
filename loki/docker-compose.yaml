@@ -1,0 +1,23 @@
+version: "3"
+
+services:
+  loki:
+    image: grafana/loki:2.9.2
+    container_name: loki
+    ports:
+      - "3100:3100"
+    command: -config.file=/etc/loki/loki-config.yaml
+    volumes:
+      - ./loki/:/etc/loki/
+    networks:
+      - kwg_network
+
+  promtail:
+    image: grafana/promtail:2.9.2
+    container_name: pomtail
+    volumes:
+      - ./loki/:/etc/loki
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: -config.file=/etc/loki/pomtail-config.yaml
+    networks:
+      - kwg_network
