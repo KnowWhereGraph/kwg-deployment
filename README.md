@@ -93,11 +93,13 @@ LetsEncrypt can't be used for local HTTPS . More information can be found on Let
 
 ### Updating Environmental Variables
 
-Environmental variables are kept in the `variables.env`. These variables are used across deployments and within NGINX; they can be injected into any container.
+Some evironmental variables are kept in the `variables.env`. These variables are used across deployments and within NGINX; they can be injected into any container.
 
 `GRAPH_DB_HOSTNAME`: The name for the graphdb service
 
 `ES_HOSTNAME`: The name for the elasticsearch service
+
+`ELASTIC_PASSWORD`: The password for elasticsearch
 
 `API_HOSTNAME`: The name for the KWG API service
 
