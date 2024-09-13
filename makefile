@@ -1,9 +1,9 @@
 THIS_FILE := $(lastword $(MAKEFILE_LIST))
 .PHONY: help start stop restart
 
-BUILD_FILES_PROD := docker-compose.yaml -f nginx/docker-compose.prod.yaml -f graphdb/docker-compose.prod.yaml -f elasticsearch/docker-compose.yaml -f prometheus/docker-compose.yaml -f kwg-api/docker-compose.prod.yaml -f grafana/docker-compose.prod.yaml
-BUILD_FILES_LOCAL := docker-compose.yaml -f nginx/docker-compose.local.yaml -f graphdb/docker-compose.local.yaml -f elasticsearch/docker-compose.yaml -f prometheus/docker-compose.yaml -f kwg-api/docker-compose.local.yaml -f grafana/docker-compose.local.yaml
-BUILD_FILES_STAGE := docker-compose.yaml -f nginx/docker-compose.stage.yaml -f graphdb/docker-compose.stage.yaml -f elasticsearch/docker-compose.yaml -f prometheus/docker-compose.yaml -f kwg-api/docker-compose.stage.yaml -f grafana/docker-compose.stage.yaml 
+BUILD_FILES_PROD := docker-compose.yaml -f nginx/docker-compose.prod.yaml -f graphdb/docker-compose.prod.yaml -f elasticsearch/docker-compose.yaml -f prometheus/docker-compose.yaml -f kwg-api/docker-compose.prod.yaml -f grafana/docker-compose.prod.yaml -f loki/docker-compose.yaml
+BUILD_FILES_LOCAL := docker-compose.yaml -f nginx/docker-compose.local.yaml -f graphdb/docker-compose.local.yaml -f elasticsearch/docker-compose.yaml -f prometheus/docker-compose.yaml -f kwg-api/docker-compose.local.yaml -f grafana/docker-compose.local.yaml -f loki/docker-compose.yaml
+BUILD_FILES_STAGE := docker-compose.yaml -f nginx/docker-compose.stage.yaml -f graphdb/docker-compose.stage.yaml -f elasticsearch/docker-compose.yaml -f prometheus/docker-compose.yaml -f kwg-api/docker-compose.stage.yaml -f grafana/docker-compose.stage.yaml -f loki/docker-compose.yaml
 
 help:	## Show this help.
 	@sed -ne '/@sed/!s/## //p' $(MAKEFILE_LIST)
