@@ -32,6 +32,533 @@ server {
         deny all;
     }
 
+    #
+    # admin-regions-gadm-documentation
+    #
+    location = /lod/ontology/gadm-administrative-areas.ttl {
+        alias /usr/share/nginx/html/onto/admin-regions-gadm-documentation/ontology.ttl;
+    }
+    location = /lod/ontology/gadm-administrative-areas.nt {
+        alias /usr/share/nginx/html/onto/admin-regions-gadm-documentation/ontology.nt;
+    }
+    location = /lod/ontology/gadm-administrative-areas.jsonld {
+        alias /usr/share/nginx/html/onto/admin-regions-gadm-documentation/ontology.jsonld;
+    }
+    location = /lod/ontology/gadm-administrative-areas.rdf {
+        alias /usr/share/nginx/html/onto/admin-regions-gadm-documentation/ontology.rdf;
+    }
+    location = /lod/ontology/gadm-administrative-areas/ {
+        alias /usr/share/nginx/html/onto/admin-regions-gadm-documentation/;
+        index index-en.html;
+    }
+    location = /lod/ontology/gadm-administrative-areas {
+        alias /usr/share/nginx/html/onto/admin-regions-gadm-documentation/;
+        index index-en.html;
+    }
+    location = /lod/ontology/gadm-administrative-areas/resources/marked.min.js {
+        alias /usr/share/nginx/html/onto/admin-regions-gadm-documentation/resources/marked.min.js;
+    }
+    location = /lod/ontology/gadm-administrative-areas/resources/jquery.js {
+        alias /usr/share/nginx/html/onto/admin-regions-gadm-documentation/resources/jquery.js;
+    }
+    location = /lod/ontology/gadm-administrative-areas/resources/owl.css {
+        alias /usr/share/nginx/html/onto/admin-regions-gadm-documentation/resources/owl.css;
+    }
+    location = /lod/ontology/gadm-administrative-areas/resources/extra.css {
+        alias /usr/share/nginx/html/onto/admin-regions-gadm-documentation/resources/extra.css;
+    }
+    location = /lod/ontology/gadm-administrative-areas/resources/primer.css {
+        alias /usr/share/nginx/html/onto/admin-regions-gadm-documentation/resources/primer.css;
+    }
+    location = /lod/ontology/gadm-administrative-areas/resources/rec.css {
+        alias /usr/share/nginx/html/onto/admin-regions-gadm-documentation/resources/rec.css;
+    }
+    location = /lod/ontology/gadm-administrative-areas/figures/admin-regions-gadm-schema-diagram.png {
+        alias /usr/share/nginx/html/onto/admin-regions-gadm-documentation/figures/admin-regions-gadm-schema-diagram.png;
+    }
+    location = /lod/ontology/gadm-administrative-areas/index-en.html {
+        alias /usr/share/nginx/html/onto/admin-regions-gadm-documentation/index-en.html;
+    }
+
+    #
+    # air-quality-epa-documentation
+    #
+    location = /lod/ontology/epa-air-quality.ttl {
+        alias /usr/share/nginx/html/onto/air-quality-epa-documentation/ontology.ttl;
+    }
+    location = /lod/ontology/epa-air-quality.nt {
+        alias /usr/share/nginx/html/onto/air-quality-epa-documentation/ontology.nt;
+    }
+    location = /lod/ontology/epa-air-quality.jsonld {
+        alias /usr/share/nginx/html/onto/air-quality-epa-documentation/ontology.jsonld;
+    }
+    location = /lod/ontology/epa-air-quality.rdf {
+        alias /usr/share/nginx/html/onto/air-quality-epa-documentation/ontology.rdf;
+    }
+    location = /lod/ontology/epa-air-quality/ {
+        alias /usr/share/nginx/html/onto/air-quality-epa-documentation/;
+        index index-en.html;
+    }
+    location = /lod/ontology/epa-air-quality {
+        alias /usr/share/nginx/html/onto/air-quality-epa-documentation/;
+        index index-en.html;
+    }
+    location = /lod/ontology/epa-air-quality/resources/marked.min.js {
+        alias /usr/share/nginx/html/onto/air-quality-epa-documentation/resources/marked.min.js;
+    }
+    location = /lod/ontology/epa-air-quality/resources/jquery.js {
+        alias /usr/share/nginx/html/onto/air-quality-epa-documentation/resources/jquery.js;
+    }
+    location = /lod/ontology/epa-air-quality/resources/owl.css {
+        alias /usr/share/nginx/html/onto/air-quality-epa-documentation/resources/owl.css;
+    }
+    location = /lod/ontology/epa-air-quality/resources/extra.css {
+        alias /usr/share/nginx/html/onto/air-quality-epa-documentation/resources/extra.css;
+    }
+    location = /lod/ontology/epa-air-quality/resources/primer.css {
+        alias /usr/share/nginx/html/onto/air-quality-epa-documentation/resources/primer.css;
+    }
+    location = /lod/ontology/epa-air-quality/resources/rec.css {
+        alias /usr/share/nginx/html/onto/air-quality-epa-documentation/resources/rec.css;
+    }
+    location = /lod/ontology/epa-air-quality/figures/air-quality-epa-schema-diagram.png {
+        alias /usr/share/nginx/html/onto/air-quality-epa-documentation/figures/air-quality-epa-schema-diagram.png;
+    }
+    location = /lod/ontology/epa-air-quality/index-en.html {
+        alias /usr/share/nginx/html/onto/air-quality-epa-documentation/index-en.html;
+    }
+
+    #
+    # census-uscb-documentation
+    #
+    location = /lod/ontology/uscb-cbsa-census.ttl {
+        alias /usr/share/nginx/html/onto/census-uscb-documentation/ontology.ttl;
+    }
+    location = /lod/ontology/uscb-cbsa-census.nt {
+        alias /usr/share/nginx/html/onto/census-uscb-documentation/ontology.nt;
+    }
+    location = /lod/ontology/uscb-cbsa-census.jsonld {
+        alias /usr/share/nginx/html/onto/census-uscb-documentation/ontology.jsonld;
+    }
+    location = /lod/ontology/uscb-cbsa-census.rdf {
+        alias /usr/share/nginx/html/onto/census-uscb-documentation/ontology.rdf;
+    }
+    location = /lod/ontology/uscb-cbsa-census/ {
+        alias /usr/share/nginx/html/onto/census-uscb-documentation/;
+        index index-en.html;
+    }
+    location = /lod/ontology/uscb-cbsa-census {
+        alias /usr/share/nginx/html/onto/census-uscb-documentation/;
+        index index-en.html;
+    }
+    location = /lod/ontology/uscb-cbsa-census/resources/marked.min.js {
+        alias /usr/share/nginx/html/onto/census-uscb-documentation/resources/marked.min.js;
+    }
+    location = /lod/ontology/uscb-cbsa-census/resources/jquery.js {
+        alias /usr/share/nginx/html/onto/census-uscb-documentation/resources/jquery.js;
+    }
+    location = /lod/ontology/uscb-cbsa-census/resources/owl.css {
+        alias /usr/share/nginx/html/onto/census-uscb-documentation/resources/owl.css;
+    }
+    location = /lod/ontology/uscb-cbsa-census/resources/extra.css {
+        alias /usr/share/nginx/html/onto/census-uscb-documentation/resources/extra.css;
+    }
+    location = /lod/ontology/uscb-cbsa-census/resources/primer.css {
+        alias /usr/share/nginx/html/onto/census-uscb-documentation/resources/primer.css;
+    }
+    location = /lod/ontology/uscb-cbsa-census/resources/rec.css {
+        alias /usr/share/nginx/html/onto/census-uscb-documentation/resources/rec.css;
+    }
+    location = /lod/ontology/uscb-cbsa-census/figures/census-uscb-schema-diagram.png {
+        alias /usr/share/nginx/html/onto/census-uscb-documentation/figures/census-uscb-schema-diagram.png;
+    }
+    location = /lod/ontology/uscb-cbsa-census/index-en.html {
+        alias /usr/share/nginx/html/onto/census-uscb-documentation/index-en.html;
+    }
+
+    #
+    # climate-divisions-observations-noaa-documentation
+    #
+    location = /lod/ontology/noaa-climate-division-observation.ttl {
+        alias /usr/share/nginx/html/onto/climate-divisions-observations-noaa-documentation/ontology.ttl;
+    }
+    location = /lod/ontology/noaa-climate-division-observation.nt {
+        alias /usr/share/nginx/html/onto/climate-divisions-observations-noaa-documentation/ontology.nt;
+    }
+    location = /lod/ontology/noaa-climate-division-observation.jsonld {
+        alias /usr/share/nginx/html/onto/climate-divisions-observations-noaa-documentation/ontology.jsonld;
+    }
+    location = /lod/ontology/noaa-climate-division-observation.rdf {
+        alias /usr/share/nginx/html/onto/climate-divisions-observations-noaa-documentation/ontology.rdf;
+    }
+    location = /lod/ontology/noaa-climate-division-observation/ {
+        alias /usr/share/nginx/html/onto/climate-divisions-observations-noaa-documentation/;
+        index index-en.html;
+    }
+    location = /lod/ontology/noaa-climate-division-observation {
+        alias /usr/share/nginx/html/onto/climate-divisions-observations-noaa-documentation/;
+        index index-en.html;
+    }
+    location = /lod/ontology/noaa-climate-division-observation/resources/marked.min.js {
+        alias /usr/share/nginx/html/onto/climate-divisions-observations-noaa-documentation/resources/marked.min.js;
+    }
+    location = /lod/ontology/noaa-climate-division-observation/resources/jquery.js {
+        alias /usr/share/nginx/html/onto/climate-divisions-observations-noaa-documentation/resources/jquery.js;
+    }
+    location = /lod/ontology/noaa-climate-division-observation/resources/owl.css {
+        alias /usr/share/nginx/html/onto/climate-divisions-observations-noaa-documentation/resources/owl.css;
+    }
+    location = /lod/ontology/noaa-climate-division-observation/resources/extra.css {
+        alias /usr/share/nginx/html/onto/climate-divisions-observations-noaa-documentation/resources/extra.css;
+    }
+    location = /lod/ontology/noaa-climate-division-observation/resources/primer.css {
+        alias /usr/share/nginx/html/onto/climate-divisions-observations-noaa-documentation/resources/primer.css;
+    }
+    location = /lod/ontology/noaa-climate-division-observation/resources/rec.css {
+        alias /usr/share/nginx/html/onto/climate-divisions-observations-noaa-documentation/resources/rec.css;
+    }
+    location = /lod/ontology/noaa-climate-division-observation/figures/climate-divisions-observations-noaa-schema-diagram.png {
+        alias /usr/share/nginx/html/onto/climate-divisions-observations-noaa-documentation/figures/climate-divisions-observations-noaa-schema-diagram.png;
+    }
+    location = /lod/ontology/noaa-climate-division-observation/index-en.html {
+        alias /usr/share/nginx/html/onto/climate-divisions-observations-noaa-documentation/index-en.html;
+    }
+
+    #
+    # cropland-types-usda-documentation
+    #
+    location = /lod/ontology/usda-cropland.ttl {
+        alias /usr/share/nginx/html/onto/cropland-types-usda-documentation/ontology.ttl;
+    }
+    location = /lod/ontology/usda-cropland.nt {
+        alias /usr/share/nginx/html/onto/cropland-types-usda-documentation/ontology.nt;
+    }
+    location = /lod/ontology/usda-cropland.jsonld {
+        alias /usr/share/nginx/html/onto/cropland-types-usda-documentation/ontology.jsonld;
+    }
+    location = /lod/ontology/usda-cropland.rdf {
+        alias /usr/share/nginx/html/onto/cropland-types-usda-documentation/ontology.rdf;
+    }
+    location = /lod/ontology/usda-cropland/ {
+        alias /usr/share/nginx/html/onto/cropland-types-usda-documentation/;
+        index index-en.html;
+    }
+    location = /lod/ontology/usda-cropland {
+        alias /usr/share/nginx/html/onto/cropland-types-usda-documentation/;
+        index index-en.html;
+    }
+    location = /lod/ontology/usda-cropland/resources/marked.min.js {
+        alias /usr/share/nginx/html/onto/cropland-types-usda-documentation/resources/marked.min.js;
+    }
+    location = /lod/ontology/usda-cropland/resources/jquery.js {
+        alias /usr/share/nginx/html/onto/cropland-types-usda-documentation/resources/jquery.js;
+    }
+    location = /lod/ontology/usda-cropland/resources/owl.css {
+        alias /usr/share/nginx/html/onto/cropland-types-usda-documentation/resources/owl.css;
+    }
+    location = /lod/ontology/usda-cropland/resources/extra.css {
+        alias /usr/share/nginx/html/onto/cropland-types-usda-documentation/resources/extra.css;
+    }
+    location = /lod/ontology/usda-cropland/resources/primer.css {
+        alias /usr/share/nginx/html/onto/cropland-types-usda-documentation/resources/primer.css;
+    }
+    location = /lod/ontology/usda-cropland/resources/rec.css {
+        alias /usr/share/nginx/html/onto/cropland-types-usda-documentation/resources/rec.css;
+    }
+    location = /lod/ontology/usda-cropland/figures/cropland-types-usda-schema-diagram.png {
+        alias /usr/share/nginx/html/onto/cropland-types-usda-documentation/figures/cropland-types-usda-schema-diagram.png;
+    }
+    location = /lod/ontology/usda-cropland/index-en.html {
+        alias /usr/share/nginx/html/onto/cropland-types-usda-documentation/index-en.html;
+    }
+
+    #
+    # earthquake-usgs-documentation
+    #
+    location = /lod/ontology/usgs-earthquake.ttl {
+        alias /usr/share/nginx/html/onto/earthquake-usgs-documentation/ontology.ttl;
+    }
+    location = /lod/ontology/usgs-earthquake.nt {
+        alias /usr/share/nginx/html/onto/earthquake-usgs-documentation/ontology.nt;
+    }
+    location = /lod/ontology/usgs-earthquake.jsonld {
+        alias /usr/share/nginx/html/onto/earthquake-usgs-documentation/ontology.jsonld;
+    }
+    location = /lod/ontology/usgs-earthquake.rdf {
+        alias /usr/share/nginx/html/onto/earthquake-usgs-documentation/ontology.rdf;
+    }
+    location = /lod/ontology/usgs-earthquake/ {
+        alias /usr/share/nginx/html/onto/earthquake-usgs-documentation/;
+        index index-en.html;
+    }
+    location = /lod/ontology/usgs-earthquake {
+        alias /usr/share/nginx/html/onto/earthquake-usgs-documentation/;
+        index index-en.html;
+    }
+    location = /lod/ontology/usgs-earthquake/resources/marked.min.js {
+        alias /usr/share/nginx/html/onto/earthquake-usgs-documentation/resources/marked.min.js;
+    }
+    location = /lod/ontology/usgs-earthquake/resources/jquery.js {
+        alias /usr/share/nginx/html/onto/earthquake-usgs-documentation/resources/jquery.js;
+    }
+    location = /lod/ontology/usgs-earthquake/resources/owl.css {
+        alias /usr/share/nginx/html/onto/earthquake-usgs-documentation/resources/owl.css;
+    }
+    location = /lod/ontology/usgs-earthquake/resources/extra.css {
+        alias /usr/share/nginx/html/onto/earthquake-usgs-documentation/resources/extra.css;
+    }
+    location = /lod/ontology/usgs-earthquake/resources/primer.css {
+        alias /usr/share/nginx/html/onto/earthquake-usgs-documentation/resources/primer.css;
+    }
+    location = /lod/ontology/usgs-earthquake/resources/rec.css {
+        alias /usr/share/nginx/html/onto/earthquake-usgs-documentation/resources/rec.css;
+    }
+    location = /lod/ontology/usgs-earthquake/figures/cropland-types-usda-schema-diagram.png {
+        alias /usr/share/nginx/html/onto/earthquake-usgs-documentation/figures/cropland-types-usda-schema-diagram.png;
+    }
+    location = /lod/ontology/usgs-earthquake/index-en.html {
+        alias /usr/share/nginx/html/onto/earthquake-usgs-documentation/index-en.html;
+    }
+
+    #
+    # federal-judicial-district-doj-documentation
+    #
+    location = /lod/ontology/doj-federal-judicial-districts.ttl {
+        alias /usr/share/nginx/html/onto/federal-judicial-district-doj-documentation/ontology.ttl;
+    }
+    location = /lod/ontology/doj-federal-judicial-districts.nt {
+        alias /usr/share/nginx/html/onto/federal-judicial-district-doj-documentation/ontology.nt;
+    }
+    location = /lod/ontology/doj-federal-judicial-districts.jsonld {
+        alias /usr/share/nginx/html/onto/federal-judicial-district-doj-documentation/ontology.jsonld;
+    }
+    location = /lod/ontology/doj-federal-judicial-districts.rdf {
+        alias /usr/share/nginx/html/onto/federal-judicial-district-doj-documentation/ontology.rdf;
+    }
+    location = /lod/ontology/doj-federal-judicial-districts/ {
+        alias /usr/share/nginx/html/onto/federal-judicial-district-doj-documentation/;
+        index index-en.html;
+    }
+    location = /lod/ontology/doj-federal-judicial-districts {
+        alias /usr/share/nginx/html/onto/federal-judicial-district-doj-documentation/;
+        index index-en.html;
+    }
+    location = /lod/ontology/doj-federal-judicial-districts/resources/marked.min.js {
+        alias /usr/share/nginx/html/onto/federal-judicial-district-doj-documentation/resources/marked.min.js;
+    }
+    location = /lod/ontology/doj-federal-judicial-districts/resources/jquery.js {
+        alias /usr/share/nginx/html/onto/federal-judicial-district-doj-documentation/resources/jquery.js;
+    }
+    location = /lod/ontology/doj-federal-judicial-districts/resources/owl.css {
+        alias /usr/share/nginx/html/onto/federal-judicial-district-doj-documentation/resources/owl.css;
+    }
+    location = /lod/ontology/doj-federal-judicial-districts/resources/extra.css {
+        alias /usr/share/nginx/html/onto/federal-judicial-district-doj-documentation/resources/extra.css;
+    }
+    location = /lod/ontology/doj-federal-judicial-districts/resources/primer.css {
+        alias /usr/share/nginx/html/onto/federal-judicial-district-doj-documentation/resources/primer.css;
+    }
+    location = /lod/ontology/doj-federal-judicial-districts/resources/rec.css {
+        alias /usr/share/nginx/html/onto/federal-judicial-district-doj-documentation/resources/rec.css;
+    }
+    location = /lod/ontology/doj-federal-judicial-districts/figures/cropland-types-usda-schema-diagram.png {
+        alias /usr/share/nginx/html/onto/federal-judicial-district-doj-documentation/figures/cropland-types-usda-schema-diagram.png;
+    }
+    location = /lod/ontology/doj-federal-judicial-districts/index-en.html {
+        alias /usr/share/nginx/html/onto/federal-judicial-district-doj-documentation/index-en.html;
+    }
+
+    #
+    # historical-fires-mtbs-documentation
+    #
+    location = /lod/ontology/mtbs-wildfire.ttl {
+        alias /usr/share/nginx/html/onto/historical-fires-mtbs-documentation/ontology.ttl;
+    }
+    location = /lod/ontology/mtbs-wildfire.nt {
+        alias /usr/share/nginx/html/onto/historical-fires-mtbs-documentation/ontology.nt;
+    }
+    location = /lod/ontology/mtbs-wildfire.jsonld {
+        alias /usr/share/nginx/html/onto/historical-fires-mtbs-documentation/ontology.jsonld;
+    }
+    location = /lod/ontology/mtbs-wildfire.rdf {
+        alias /usr/share/nginx/html/onto/historical-fires-mtbs-documentation/ontology.rdf;
+    }
+    location = /lod/ontology/mtbs-wildfire/ {
+        alias /usr/share/nginx/html/onto/historical-fires-mtbs-documentation/;
+        index index-en.html;
+    }
+    location = /lod/ontology/mtbs-wildfire {
+        alias /usr/share/nginx/html/onto/historical-fires-mtbs-documentation/;
+        index index-en.html;
+    }
+    location = /lod/ontology/mtbs-wildfire/resources/marked.min.js {
+        alias /usr/share/nginx/html/onto/historical-fires-mtbs-documentation/resources/marked.min.js;
+    }
+    location = /lod/ontology/mtbs-wildfire/resources/jquery.js {
+        alias /usr/share/nginx/html/onto/historical-fires-mtbs-documentation/resources/jquery.js;
+    }
+    location = /lod/ontology/mtbs-wildfire/resources/owl.css {
+        alias /usr/share/nginx/html/onto/historical-fires-mtbs-documentation/resources/owl.css;
+    }
+    location = /lod/ontology/mtbs-wildfire/resources/extra.css {
+        alias /usr/share/nginx/html/onto/historical-fires-mtbs-documentation/resources/extra.css;
+    }
+    location = /lod/ontology/mtbs-wildfire/resources/primer.css {
+        alias /usr/share/nginx/html/onto/historical-fires-mtbs-documentation/resources/primer.css;
+    }
+    location = /lod/ontology/mtbs-wildfire/resources/rec.css {
+        alias /usr/share/nginx/html/onto/historical-fires-mtbs-documentation/resources/rec.css;
+    }
+    location = /lod/ontology/mtbs-wildfire/figures/historical-fires-mtbs-schema-diagram.png {
+        alias /usr/share/nginx/html/onto/historical-fires-mtbs-documentation/figures/historical-fires-mtbs-schema-diagram.png;
+    }
+    location = /lod/ontology/mtbs-wildfire/index-en.html {
+        alias /usr/share/nginx/html/onto/historical-fires-mtbs-documentation/index-en.html;
+    }
+
+    #
+    # hurricane-tracks-noaa-documentation
+    #
+    location = /lod/ontology/noaa-hurricane-tracks.ttl {
+        alias /usr/share/nginx/html/onto/hurricane-tracks-noaa-documentation/ontology.ttl;
+    }
+    location = /lod/ontology/noaa-hurricane-tracks.nt {
+        alias /usr/share/nginx/html/onto/hurricane-tracks-noaa-documentation/ontology.nt;
+    }
+    location = /lod/ontology/noaa-hurricane-tracks.jsonld {
+        alias /usr/share/nginx/html/onto/hurricane-tracks-noaa-documentation/ontology.jsonld;
+    }
+    location = /lod/ontology/noaa-hurricane-tracks.rdf {
+        alias /usr/share/nginx/html/onto/hurricane-tracks-noaa-documentation/ontology.rdf;
+    }
+    location = /lod/ontology/noaa-hurricane-tracks/ {
+        alias /usr/share/nginx/html/onto/hurricane-tracks-noaa-documentation/;
+        index index-en.html;
+    }
+    location = /lod/ontology/noaa-hurricane-tracks {
+        alias /usr/share/nginx/html/onto/hurricane-tracks-noaa-documentation/;
+        index index-en.html;
+    }
+    location = /lod/ontology/noaa-hurricane-tracks/resources/marked.min.js {
+        alias /usr/share/nginx/html/onto/hurricane-tracks-noaa-documentation/resources/marked.min.js;
+    }
+    location = /lod/ontology/noaa-hurricane-tracks/resources/jquery.js {
+        alias /usr/share/nginx/html/onto/hurricane-tracks-noaa-documentation/resources/jquery.js;
+    }
+    location = /lod/ontology/noaa-hurricane-tracks/resources/owl.css {
+        alias /usr/share/nginx/html/onto/hurricane-tracks-noaa-documentation/resources/owl.css;
+    }
+    location = /lod/ontology/noaa-hurricane-tracks/resources/extra.css {
+        alias /usr/share/nginx/html/onto/hurricane-tracks-noaa-documentation/resources/extra.css;
+    }
+    location = /lod/ontology/noaa-hurricane-tracks/resources/primer.css {
+        alias /usr/share/nginx/html/onto/hurricane-tracks-noaa-documentation/resources/primer.css;
+    }
+    location = /lod/ontology/noaa-hurricane-tracks/resources/rec.css {
+        alias /usr/share/nginx/html/onto/hurricane-tracks-noaa-documentation/resources/rec.css;
+    }
+    location = /lod/ontology/noaa-hurricane-tracks/figures/hurricane-tracks-noaa-schema-diagram.png {
+        alias /usr/share/nginx/html/onto/hurricane-tracks-noaa-documentation/figures/hurricane-tracks-noaa-schema-diagram.png;
+    }
+    location = /lod/ontology/noaa-hurricane-tracks/index-en.html {
+        alias /usr/share/nginx/html/onto/hurricane-tracks-noaa-documentation/index-en.html;
+    }
+
+    #
+    # national-weather-zone-noaa-documentation
+    #
+    location = /lod/ontology/noaa-national-weather-zone.ttl {
+        alias /usr/share/nginx/html/onto/national-weather-zone-noaa-documentation/ontology.ttl;
+    }
+    location = /lod/ontology/noaa-national-weather-zone.nt {
+        alias /usr/share/nginx/html/onto/national-weather-zone-noaa-documentation/ontology.nt;
+    }
+    location = /lod/ontology/noaa-national-weather-zone.jsonld {
+        alias /usr/share/nginx/html/onto/national-weather-zone-noaa-documentation/ontology.jsonld;
+    }
+    location = /lod/ontology/noaa-national-weather-zone.rdf {
+        alias /usr/share/nginx/html/onto/national-weather-zone-noaa-documentation/ontology.rdf;
+    }
+    location = /lod/ontology/noaa-national-weather-zone/ {
+        alias /usr/share/nginx/html/onto/national-weather-zone-noaa-documentation/;
+        index index-en.html;
+    }
+    location = /lod/ontology/noaa-national-weather-zone {
+        alias /usr/share/nginx/html/onto/national-weather-zone-noaa-documentation/;
+        index index-en.html;
+    }
+    location = /lod/ontology/noaa-national-weather-zone/resources/marked.min.js {
+        alias /usr/share/nginx/html/onto/national-weather-zone-noaa-documentation/resources/marked.min.js;
+    }
+    location = /lod/ontology/noaa-national-weather-zone/resources/jquery.js {
+        alias /usr/share/nginx/html/onto/national-weather-zone-noaa-documentation/resources/jquery.js;
+    }
+    location = /lod/ontology/noaa-national-weather-zone/resources/owl.css {
+        alias /usr/share/nginx/html/onto/national-weather-zone-noaa-documentation/resources/owl.css;
+    }
+    location = /lod/ontology/noaa-national-weather-zone/resources/extra.css {
+        alias /usr/share/nginx/html/onto/national-weather-zone-noaa-documentation/resources/extra.css;
+    }
+    location = /lod/ontology/noaa-national-weather-zone/resources/primer.css {
+        alias /usr/share/nginx/html/onto/national-weather-zone-noaa-documentation/resources/primer.css;
+    }
+    location = /lod/ontology/noaa-national-weather-zone/resources/rec.css {
+        alias /usr/share/nginx/html/onto/national-weather-zone-noaa-documentation/resources/rec.css;
+    }
+    location = /lod/ontology/noaa-national-weather-zone/figures/national-weather-zone-schema-diagram.png {
+        alias /usr/share/nginx/html/onto/national-weather-zone-noaa-documentation/figures/national-weather-zone-schema-diagram.png;
+    }
+    location = /lod/ontology/noaa-national-weather-zone/index-en.html {
+        alias /usr/share/nginx/html/onto/national-weather-zone-noaa-documentation/index-en.html;
+    }
+
+    #
+    # wildfire-nifc-documentation
+    #
+    location = /lod/ontology/nifc-wildfire.ttl {
+        alias /usr/share/nginx/html/onto/wildfire-nifc-documentation/ontology.ttl;
+    }
+    location = /lod/ontology/nifc-wildfire.nt {
+        alias /usr/share/nginx/html/onto/wildfire-nifc-documentation/ontology.nt;
+    }
+    location = /lod/ontology/nifc-wildfire.jsonld {
+        alias /usr/share/nginx/html/onto/wildfire-nifc-documentation/ontology.jsonld;
+    }
+    location = /lod/ontology/nifc-wildfire.rdf {
+        alias /usr/share/nginx/html/onto/wildfire-nifc-documentation/ontology.rdf;
+    }
+    location = /lod/ontology/nifc-wildfire/ {
+        alias /usr/share/nginx/html/onto/wildfire-nifc-documentation/;
+        index index-en.html;
+    }
+    location = /lod/ontology/nifc-wildfire {
+        alias /usr/share/nginx/html/onto/wildfire-nifc-documentation/;
+        index index-en.html;
+    }
+    location = /lod/ontology/nifc-wildfire/resources/marked.min.js {
+        alias /usr/share/nginx/html/onto/wildfire-nifc-documentation/resources/marked.min.js;
+    }
+    location = /lod/ontology/nifc-wildfire/resources/jquery.js {
+        alias /usr/share/nginx/html/onto/wildfire-nifc-documentation/resources/jquery.js;
+    }
+    location = /lod/ontology/nifc-wildfire/resources/owl.css {
+        alias /usr/share/nginx/html/onto/wildfire-nifc-documentation/resources/owl.css;
+    }
+    location = /lod/ontology/nifc-wildfire/resources/extra.css {
+        alias /usr/share/nginx/html/onto/wildfire-nifc-documentation/resources/extra.css;
+    }
+    location = /lod/ontology/nifc-wildfire/resources/primer.css {
+        alias /usr/share/nginx/html/onto/wildfire-nifc-documentation/resources/primer.css;
+    }
+    location = /lod/ontology/nifc-wildfire/resources/rec.css {
+        alias /usr/share/nginx/html/onto/wildfire-nifc-documentation/resources/rec.css;
+    }
+    location = /lod/ontology/nifc-wildfire/figures/national-weather-zone-schema-diagram.png {
+        alias /usr/share/nginx/html/onto/wildfire-nifc-documentation/figures/national-weather-zone-schema-diagram.png;
+    }
+    location = /lod/ontology/nifc-wildfire/index-en.html {
+        alias /usr/share/nginx/html/onto/wildfire-nifc-documentation/index-en.html;
+    }
 
     # Server root directs to the faceted search
     location /  {
@@ -108,11 +635,7 @@ server {
 
     #Static KW Panels Application
     location /kw-panels/ {
-
         alias /usr/share/nginx/html/kw-panels/ ;
-        ### optional: proxy instead of alias
-        # proxy_pass http://127.0.0.1:3002/;
-
         index index.html;
     }
 
@@ -133,6 +656,7 @@ server {
     
     # VOID Descriptor
     location /.well-known/void {
-        alias /usr/share/nginx/html/void/void.ttl;
+        alias /usr/share/nginx/html/onto/void.ttl;
     }
+
 }

@@ -44,3 +44,54 @@ The NGINX logs are found in the container's /var/logs/nginx, which is mounted lo
 ## Metrics
 
 Metrics are exported to prometheus through the nginx/nginx-prometheus-exporter container, which is defined in the `metrics/` folder.
+
+## Adding Ontologies
+
+The ontology URI space competes with the API. Because of this, it's necessary to be precise with the ontology assets: the rdf files, the html, and resources the html references. To add a new ontology site, use the template below, replacing the `nifc-wildfire` information with your own.
+
+```
+    location = /lod/ontology/nifc-wildfire.ttl {
+        alias /usr/share/nginx/html/onto/wildfire-nifc-documentation/ontology.ttl;
+    }
+    location = /lod/ontology/nifc-wildfire.nt {
+        alias /usr/share/nginx/html/onto/wildfire-nifc-documentation/ontology.nt;
+    }
+    location = /lod/ontology/nifc-wildfire.jsonld {
+        alias /usr/share/nginx/html/onto/wildfire-nifc-documentation/ontology.jsonld;
+    }
+    location = /lod/ontology/nifc-wildfire.rdf {
+        alias /usr/share/nginx/html/onto/wildfire-nifc-documentation/ontology.rdf;
+    }
+    location = /lod/ontology/nifc-wildfire/ {
+        alias /usr/share/nginx/html/onto/wildfire-nifc-documentation/;
+        index index-en.html;
+    }
+    location = /lod/ontology/nifc-wildfire {
+        alias /usr/share/nginx/html/onto/wildfire-nifc-documentation/;
+        index index-en.html;
+    }
+    location = /lod/ontology/nifc-wildfire/resources/marked.min.js {
+        alias /usr/share/nginx/html/onto/wildfire-nifc-documentation/resources/marked.min.js;
+    }
+    location = /lod/ontology/nifc-wildfire/resources/jquery.js {
+        alias /usr/share/nginx/html/onto/wildfire-nifc-documentation/resources/jquery.js;
+    }
+    location = /lod/ontology/nifc-wildfire/resources/owl.css {
+        alias /usr/share/nginx/html/onto/wildfire-nifc-documentation/resources/owl.css;
+    }
+    location = /lod/ontology/nifc-wildfire/resources/extra.css {
+        alias /usr/share/nginx/html/onto/wildfire-nifc-documentation/resources/extra.css;
+    }
+    location = /lod/ontology/nifc-wildfire/resources/primer.css {
+        alias /usr/share/nginx/html/onto/wildfire-nifc-documentation/resources/primer.css;
+    }
+    location = /lod/ontology/nifc-wildfire/resources/rec.css {
+        alias /usr/share/nginx/html/onto/wildfire-nifc-documentation/resources/rec.css;
+    }
+    location = /lod/ontology/nifc-wildfire/figures/national-weather-zone-schema-diagram.png {
+        alias /usr/share/nginx/html/onto/wildfire-nifc-documentation/figures/national-weather-zone-schema-diagram.png;
+    }
+    location = /lod/ontology/nifc-wildfire/index-en.html {
+        alias /usr/share/nginx/html/onto/wildfire-nifc-documentation/index-en.html;
+    }
+```
