@@ -36,6 +36,7 @@ The following steps aren't automated and will need to be done *before* bringing 
 6. Modify `variables.env` to specify the name of the GraphDB repository the `sparql/` endpoint should query
 7. Modify `variables.env` with the Elasticsearch password
 8. Modify `variables.env` with the server name - without `http` or `www` (localhost/staging.knowwheregraph.org/stko-kwg.geog.ucsb.edu)
+9. On a new server, install the loki docker plugin with `docker plugin install grafana/loki-docker-driver:main--alias loki  --grant-all-permissions`
 
 ### Production Environment
 
@@ -92,11 +93,13 @@ LetsEncrypt can't be used for local HTTPS . More information can be found on Let
 
 ### Updating Environmental Variables
 
-Environmental variables are kept in the `variables.env`. These variables are used across deployments and within NGINX; they can be injected into any container.
+Some evironmental variables are kept in the `variables.env`. These variables are used across deployments and within NGINX; they can be injected into any container.
 
 `GRAPH_DB_HOSTNAME`: The name for the graphdb service
 
 `ES_HOSTNAME`: The name for the elasticsearch service
+
+`ELASTIC_PASSWORD`: The password for elasticsearch
 
 `API_HOSTNAME`: The name for the KWG API service
 

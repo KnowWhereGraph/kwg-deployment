@@ -1,0 +1,189 @@
+PREFIX :<http://www.ontotext.com/connectors/elasticsearch#>
+PREFIX kwgr: <http://stko-kwg.geog.ucsb.edu/lod/resource/>
+PREFIX gnis: <http://gnis-ld.org/lod/gnis/ontology/>
+PREFIX kwg-ont: <http://stko-kwg.geog.ucsb.edu/lod/ontology/>
+
+PREFIX inst:<http://www.ontotext.com/connectors/elasticsearch/instance#>
+INSERT DATA {
+	inst:labels :createConnector '''
+{
+  "fields": [
+    {
+      "fieldName": "labels",
+      "propertyChain": [
+        "http://www.w3.org/2000/01/rdf-schema#label"
+      ],
+      "indexed": true,
+      "stored": true,
+      "analyzed": true,
+      "multivalued": true,
+      "ignoreInvalidValues": false,
+      "fielddata": false,
+      "array": false,
+      "objectFields": []
+    },
+    {
+      "fieldName": "comment",
+      "propertyChain": [
+        "http://www.w3.org/2000/01/rdf-schema#comment"
+      ],
+      "indexed": true,
+      "stored": true,
+      "analyzed": false,
+      "multivalued": true,
+      "ignoreInvalidValues": false,
+      "fielddata": true,
+      "array": false,
+      "objectFields": []
+    },
+    {
+      "fieldName": "isFeatureOfInterestOf",
+      "propertyChain": [
+        "http://www.w3.org/ns/sosa/isFeatureOfInterestOf",
+        "http://www.w3.org/2000/01/rdf-schema#label"
+      ],
+      "indexed": true,
+      "stored": true,
+      "analyzed": false,
+      "multivalued": true,
+      "ignoreInvalidValues": false,
+      "fielddata": true,
+      "array": false,
+      "objectFields": []
+    },
+    {
+      "fieldName": "locatedIn",
+      "propertyChain": [
+        "http://stko-kwg.geog.ucsb.edu/lod/ontology/locatedIn",
+        "http://www.w3.org/2000/01/rdf-schema#label"
+      ],
+      "indexed": true,
+      "stored": true,
+      "analyzed": false,
+      "multivalued": true,
+      "ignoreInvalidValues": false,
+      "fielddata": true,
+      "array": false,
+      "objectFields": []
+    },
+    {
+      "fieldName": "sfWithin",
+      "propertyChain": [
+        "http://www.opengis.net/ont/geosparql#sfWithin",
+        "http://www.w3.org/2000/01/rdf-schema#label"
+      ],
+      "indexed": true,
+      "stored": true,
+      "analyzed": false,
+      "multivalued": true,
+      "ignoreInvalidValues": false,
+      "fielddata": true,
+      "array": false,
+      "objectFields": []
+    },
+  ],
+  "languages": [],
+  "types": [
+    "http://stko-kwg.geog.ucsb.edu/lod/ontology/DroughtZone",
+    "http://stko-kwg.geog.ucsb.edu/lod/ontology/AdministrativeRegion_0",
+    "http://stko-kwg.geog.ucsb.edu/lod/ontology/AdministrativeRegion_1",
+    "http://stko-kwg.geog.ucsb.edu/lod/ontology/AdministrativeRegion_2",
+    "http://stko-kwg.geog.ucsb.edu/lod/ontology/AdministrativeRegion_3",
+    "http://stko-kwg.geog.ucsb.edu/lod/ontology/AdministrativeRegion_4",
+    "http://stko-kwg.geog.ucsb.edu/lod/ontology/AdministrativeRegion_5",
+    "http://stko-kwg.geog.ucsb.edu/lod/ontology/SmokePlumeSnapshot",
+    "http://stko-kwg.geog.ucsb.edu/lod/ontology/Earthquake",
+    "http://stko-kwg.geog.ucsb.edu/lod/ontology/ZipCodeArea",
+    "http://stko-kwg.geog.ucsb.edu/lod/ontology/FederalJudicialDistrict",
+    "http://stko-kwg.geog.ucsb.edu/lod/ontology/ClimateDivision",
+    "http://stko-kwg.geog.ucsb.edu/lod/ontology/NationalWeatherZone",
+    "http://stko-kwg.geog.ucsb.edu/lod/ontology/NIFC_Wildfire",
+    "http://stko-kwg.geog.ucsb.edu/lod/ontology/MTBS_Fire",
+    "http://stko-kwg.geog.ucsb.edu/lod/ontology/NOAA_ThunderstormWindEvent",
+    "http://stko-kwg.geog.ucsb.edu/lod/ontology/NOAA_HailEvent",
+    "http://stko-kwg.geog.ucsb.edu/lod/ontology/FEMA_Disaster",
+    "http://stko-kwg.geog.ucsb.edu/lod/ontology/MTBS_Wildfire",
+    "http://gnis-ld.org/lod/gnis/ontology/Stream",
+    "http://gnis-ld.org/lod/gnis/ontology/Church",
+    "http://gnis-ld.org/lod/gnis/ontology/School",
+    "http://gnis-ld.org/lod/gnis/ontology/PopulatedPlace",
+    "http://stko-kwg.geog.ucsb.edu/lod/ontology/Pharmacy",
+    "http://gnis-ld.org/lod/gnis/ontology/Building",
+    "http://gnis-ld.org/lod/gnis/ontology/Locale",
+    "http://gnis-ld.org/lod/gnis/ontology/Cemetery",
+    "http://stko-kwg.geog.ucsb.edu/lod/ontology/Program",
+    "http://stko-kwg.geog.ucsb.edu/lod/ontology/NOAA_HighWindEvent",
+    "http://stko-kwg.geog.ucsb.edu/lod/ontology/NOAA_FlashFloodEvent",
+    "http://stko-kwg.geog.ucsb.edu/lod/ontology/NOAA_TornadoEvent",
+    "http://stko-kwg.geog.ucsb.edu/lod/ontology/NOAA_WinterStormEvent",
+    "http://stko-kwg.geog.ucsb.edu/lod/ontology/NOAA_WinterWeatherEvent",
+    "http://stko-kwg.geog.ucsb.edu/lod/ontology/NOAA_DroughtEvent",
+    "http://stko-kwg.geog.ucsb.edu/lod/ontology/NOAA_FloodEvent",
+    "http://stko-kwg.geog.ucsb.edu/lod/ontology/NOAA_HeavySnowEvent",
+    "http://gnis-ld.org/lod/gnis/ontology/Reservoir",
+    "http://gnis-ld.org/lod/gnis/ontology/Lake",
+    "http://gnis-ld.org/lod/gnis/ontology/Park",
+    "http://gnis-ld.org/lod/gnis/ontology/Summit",
+    "http://gnis-ld.org/lod/gnis/ontology/Valley",
+    "http://gnis-ld.org/lod/gnis/ontology/CivilGovernment",
+    "http://gnis-ld.org/lod/gnis/ontology/PostOffice",
+    "http://stko-kwg.geog.ucsb.edu/lod/ontology/NIFC_PrescribedFire",
+    "http://gnis-ld.org/lod/gnis/ontology/Dam",
+    "http://stko-kwg.geog.ucsb.edu/lod/ontology/NOAA_MarineThunderstormWindEvent",
+    "http://stko-kwg.geog.ucsb.edu/lod/ontology/BlueSkyWildfire",
+    "http://stko-kwg.geog.ucsb.edu/lod/ontology/BPHC_Site",
+    "http://stko-kwg.geog.ucsb.edu/lod/ontology/MTBS_PrescribedFire",
+    "http://gnis-ld.org/lod/gnis/ontology/Well",
+    "http://gnis-ld.org/lod/gnis/ontology/Spring",
+    "http://gnis-ld.org/lod/gnis/ontology/Mine",
+    "http://stko-kwg.geog.ucsb.edu/lod/ontology/NOAA_StrongWindEvent",
+    "http://stko-kwg.geog.ucsb.edu/lod/ontology/AirQualitySite",
+    "http://stko-kwg.geog.ucsb.edu/lod/ontology/NOAA_HeavyRainEvent",
+    "http://stko-kwg.geog.ucsb.edu/lod/ontology/NOAA_HeatEvent",
+    "http://gnis-ld.org/lod/gnis/ontology/Airport",
+    "http://gnis-ld.org/lod/gnis/ontology/Canal",
+    "http://stko-kwg.geog.ucsb.edu/lod/ontology/NOAA_ExcessiveHeatEvent",
+    "http://gnis-ld.org/lod/gnis/ontology/Island",
+    "http://stko-kwg.geog.ucsb.edu/lod/ontology/NOAA_ExtremeCold/WindChillEvent",
+    "http://stko-kwg.geog.ucsb.edu/lod/ontology/PublicHealthObservationCollection",
+    "http://stko-kwg.geog.ucsb.edu/lod/ontology/NOAA_Cold/WindChillEvent",
+    "http://stko-kwg.geog.ucsb.edu/lod/ontology/NOAA_Hurricane",
+    "http://stko-kwg.geog.ucsb.edu/lod/ontology/NOAA_BlizzardEvent",
+    "http://stko-kwg.geog.ucsb.edu/lod/ontology/NOAA_LightningEvent",
+    "http://gnis-ld.org/lod/gnis/ontology/Tower",
+    "http://stko-kwg.geog.ucsb.edu/lod/ontology/NOAA_DenseFogEvent",
+    "http://stko-kwg.geog.ucsb.edu/lod/ontology/NOAA_Frost/FreezeEvent",
+    "http://gnis-ld.org/lod/gnis/ontology/Cape",
+    "http://gnis-ld.org/lod/gnis/ontology/Hospital",
+    "http://stko-kwg.geog.ucsb.edu/lod/ontology/MTBS_FireObservation",
+    "http://gnis-ld.org/lod/gnis/ontology/Ridge",
+    "http://stko-kwg.geog.ucsb.edu/lod/ontology/ProtectiveMeasures",
+    "http://gnis-ld.org/lod/gnis/ontology/Census",
+    "http://gnis-ld.org/lod/gnis/ontology/Bay",
+    "http://stko-kwg.geog.ucsb.edu/lod/ontology/NOAA_IceStormEvent",
+    "http://stko-kwg.geog.ucsb.edu/lod/ontology/IndividualAssistance",
+    "http://gnis-ld.org/lod/gnis/ontology/Trail",
+    "http://gnis-ld.org/lod/gnis/ontology/Flat",
+    "http://stko-kwg.geog.ucsb.edu/lod/ontology/DebrisRemoval",
+    "http://stko-kwg.geog.ucsb.edu/lod/ontology/NOAA_TropicalStorm",
+    "http://stko-kwg.geog.ucsb.edu/lod/ontology/NOAA_FunnelCloudEvent",
+    "http://stko-kwg.geog.ucsb.edu/lod/ontology/NOAA_WildfireEvent",
+    "http://gnis-ld.org/lod/gnis/ontology/Gap",
+    "http://stko-kwg.geog.ucsb.edu/lod/ontology/PublicAssistance",
+    "http://stko-kwg.geog.ucsb.edu/lod/ontology/WaterControlFacilities"
+  ],
+  "readonly": false,
+  "detectFields": false,
+  "importGraph": false,
+  "skipInitialIndexing": false,
+  "elasticsearchClusterSniff": true,
+  "elasticsearchNode": "elasticsearch:9200",
+  "elasticsearchBasicAuthUser": "elastic",
+  "elasticsearchBasicAuthPassword": "PASSWORD_HERE",
+
+  "manageIndex": true,
+  "manageMapping": true,
+  "bulkUpdateBatchSize": 5000
+}
+''' .
+}
