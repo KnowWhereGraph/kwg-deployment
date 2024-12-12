@@ -578,7 +578,7 @@ server {
         proxy_set_header X-Forwarded-Prefix /;
     }
 
-    # Forward Grafana traffic to /metrics
+     Forward Grafana traffic to /metrics
     location /metrics/ {
         proxy_pass http://grafana:3000/;
         proxy_http_version 1.1;
@@ -605,7 +605,7 @@ server {
         proxy_set_header Accept-Encoding "";
 
         # filter additional mime types
-        sub_filter_types text/xml text/css application/javascript text/html;
+        sub_filter_types text/xml text/css application/javascript;
         
         # this rewrites the path for the background image
         sub_filter "../assets/" "/browse/assets/";
@@ -668,5 +668,12 @@ server {
     location /.well-known/void {
         alias /usr/share/nginx/html/onto/void.ttl;
     }
+
+
+    # Robots.txt
+    location /robots.txt {
+        alias /usr/share/nginx/html/robots.txt;
+    }
+
 
 }
