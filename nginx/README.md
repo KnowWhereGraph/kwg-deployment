@@ -45,6 +45,8 @@ The NGINX logs are found in the container's /var/logs/nginx, which is mounted lo
 
 Metrics are exported to prometheus through the nginx/nginx-prometheus-exporter container, which is defined in the `metrics/` folder.
 
+This is done through nginx's stub_status feature. This resource is blocked to the outside world to keep visitor data internal; the ip rules are in the nginx template file. This may need to be updated when on new host machine to match the docker subnet range.
+
 ## Adding Ontologies
 
 The ontology URI space competes with the API. Because of this, it's necessary to be precise with the ontology assets: the rdf files, the html, and resources the html references. To add a new ontology site, use the template below, replacing the `nifc-wildfire` information with your own.
