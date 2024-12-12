@@ -11,13 +11,15 @@ There are *six* docker-compose files here. The two main flavors are
 1. Preloading: These compose files are used to the first upload of data. There are three (local/stage/prod)
 2. Running: These compose files are used when running GraphDB to serve content. There are three (local/stage/prod)
 
+
+
 ## Data Persistence
 
 Data is persisted on the host machine, _not_ the container. This is achieved by a volume mount between the host and GraphDB's repository data directory which is set in the docker-compose file. Graph DB stores its repository, configuration, and logging data under `/opt/graphdb/home`. This path can be mounted to the local system, persisting the data. When a new container is launched, it will reference the persisted data and load it.
 
 ## Deploying
 
-GraphDB deployments should be managed by the repositorie's root Makefile. Run `make help` for a description of commands and follow the documentation below to learn more about loading data & deploying.
+GraphDB deployments should be managed by the repositories root Makefile. Run `make help` for a description of commands and follow the documentation below to learn more about loading data & deploying.
 
 ### Initial Data Load
 
