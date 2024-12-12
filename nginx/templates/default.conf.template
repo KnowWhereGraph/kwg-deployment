@@ -605,7 +605,7 @@ server {
         proxy_set_header Accept-Encoding "";
 
         # filter additional mime types
-        sub_filter_types text/xml text/css application/javascript;
+        sub_filter_types text/xml text/css application/javascript text/html;
         
         # this rewrites the path for the background image
         sub_filter "../assets/" "/browse/assets/";
@@ -625,6 +625,16 @@ server {
 
     # Forward the SPARQL endpoint to GraphDB
     location /sparql {
+        proxy_pass http://${GRAPH_DB_HOSTNAME}:7200/repositories/${CURRENT_REPOSITORY_NAME};
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
+
+
+    location /sparql/ {
         proxy_pass http://${GRAPH_DB_HOSTNAME}:7200/repositories/${CURRENT_REPOSITORY_NAME};
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
