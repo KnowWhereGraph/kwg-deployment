@@ -674,12 +674,12 @@ server {
 
     # Workbench redirect
     location /workbench{
-	return 301 /graphdb;
+	return 301 /graphdb/sparql;
     }
 
   # Workbench redirect
     location /workbench/{
-        return 301 /graphdb;
+        return 301 /graphdb/sparql;
     }
 
     # Robots.txt
