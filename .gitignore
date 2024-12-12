@@ -6,4 +6,5 @@ nginx/sites/faceted-search/
 nginx/sites/kw-panels/
 nginx/sites/node-browser/
 services/
+graphdb/nginx/*
 grafana/persistent_config
