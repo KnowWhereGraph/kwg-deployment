@@ -4,9 +4,9 @@ KnowWhereGraph's deployment system
 
 ## Overview
 
-KnowWhereGraph's deployment is managed through docker-compose. It consists of several networked services and static sites. For an overview of the architecture and services involved, visit the [architecture](./architecture/) page.
+KnowWhereGraph's reference architecture is a Monolith. It consists of several networked services and static sites, all intertwined and dependant on each other. The stack is generally brought up all at once. Individual services can be updated in isolation, but there will be downtime for end users. For an overview of the architecture and services involved, visit the [architecture](./architecture/) page.
 
-Each service has its own docker-compose and optional Dockerfile, which are composed to create the stack. When the behavior of a service depends on where it's deployed (locally, on the staging server, on the production server) there will be different docker-compose files for each environment. When the service is agnostic, there will be only one docker-compose file.
+At a high level, each service has its own folder. Within each folder, there's at least one docker compose file and a Dockerfile when container customization is needed. For each environment (stage, prod, local) there's a corresponding docker-compose file that has configurations specific for said environment.
 
 Some services are coupled with prometheus logging scrapers. In these cases, the associated scraper is included in the services' docker-compose file.
 
@@ -80,7 +80,7 @@ Because of KnowWhereGraph's graph resource requirements, it's difficult to creat
 | Memory    | 8 GB   |
 | Disk      | 20 GB     |
 
-#### NGINX Certificates
+#### Certificates (NGINX and GraphDB)
 
 LetsEncrypt can't be used for local HTTPS . More information can be found on LetsEncrypt's [website](https://letsencrypt.org/docs/certificates-for-localhost/). This deployment architecture makes use of self signed certificates for localhost.
 
@@ -88,6 +88,8 @@ LetsEncrypt can't be used for local HTTPS . More information can be found on Let
 2. Name the `*.cert` file `cert.cert`
 3. Name the `*.key` file `key.key`
 4. Place them in `./nginx/local-certs`
+
+GraphDB also needs its own set of certificates. These can be generated with `keytool -genkey -alias graphdb -keyalg RSA` and should be placed in `graphdb/nginx/local-certs/`.
 
 #### Running Locally
 
