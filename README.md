@@ -41,6 +41,7 @@ The following steps aren't automated and will need to be done *before* bringing 
 11. Set the Grafana credentials (see readme file in `./grafana/`)
 12. Set the Elasticsearch credentials (see readme file in `./elasticsearch/`)
 13. Set the prometheus credentials through Grafana > Datasources > Prometheus
+14. Run the validation tool with `sh validate.sh`
 
 ### Production Environment
 
