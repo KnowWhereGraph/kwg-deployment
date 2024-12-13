@@ -1,4 +1,4 @@
-FROM ontotext/graphdb:10.7.3
+FROM ontotext/graphdb:10.8.2
 
 COPY nginx/local-certs/cert.pem $JAVA_HOME/lib/security
 RUN \

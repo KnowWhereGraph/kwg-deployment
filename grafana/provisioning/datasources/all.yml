@@ -8,9 +8,8 @@ datasources:
     access: proxy
     editable: true
     user: admin
-      secureJsonData:
-        password: 
-
+    secureJsonData:
+      password: null
 
   - name: Loki
     type: loki
