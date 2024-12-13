@@ -10,6 +10,8 @@ The grafana deployment can be found on port `3000`` of the server that it's depl
 
 Set the username and password in the docker-compose file; use these to sign into the dashboard. The data connection to prometheus and dashboard integrations are automatic and will be set up when the service is started.
 
+The username and password for prometheus also need to be set in `provisioning/datasources/all.yml`.
+
 Note: Folders that are mounted to the grafana container should have permissions set from `sudo chown -R 472:472`. Eg: `sudo chown -R 472:472 persistent_config/`.
 
 ## Development
