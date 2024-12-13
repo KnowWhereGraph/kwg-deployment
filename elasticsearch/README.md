@@ -4,13 +4,14 @@ Text search & ranking for KnowWhereGraph
 
 ## Deploying
 
-ElasticSearch can be independently deployed with
+The docker-compose file is used for deploying the service. Before deploying, set the password in the docker-compose file.
 
-`docker-compose up`
+## Credentials
 
-## User Account
-
-ElasticSearch is configured to be run under an authenticated account, `elastic` with the password set in the root `variables.env` file.
+```
+user: elastic
+pass: <refer to docker-compose.yaml>
+```
 
 ## Logs
 

@@ -36,7 +36,11 @@ The following steps aren't automated and will need to be done *before* bringing 
 6. Modify `variables.env` to specify the name of the GraphDB repository the `sparql/` endpoint should query
 7. Modify `variables.env` with the Elasticsearch password
 8. Modify `variables.env` with the server name - without `http` or `www` (localhost/staging.knowwheregraph.org/stko-kwg.geog.ucsb.edu)
-9. On a new server, install the loki docker plugin with `docker plugin install grafana/loki-docker-driver:main--alias loki  --grant-all-permissions`
+9. On the bare metal server, install the loki docker plugin with `docker plugin install grafana/loki-docker-driver:main--alias loki  --grant-all-permissions`. This scrapes the docker system for logs.
+10. Set the Prometheus credentials (see readme file in `./prometheus/`)
+11. Set the Grafana credentials (see readme file in `./grafana/`)
+12. Set the Elasticsearch credentials (see readme file in `./elasticsearch/`)
+13. Set the prometheus credentials through Grafana > Datasources > Prometheus
 
 ### Production Environment
 
@@ -100,8 +104,6 @@ Some evironmental variables are kept in the `variables.env`. These variables are
 `GRAPH_DB_HOSTNAME`: The name for the graphdb service
 
 `ES_HOSTNAME`: The name for the elasticsearch service
-
-`ELASTIC_PASSWORD`: The password for elasticsearch
 
 `API_HOSTNAME`: The name for the KWG API service
 

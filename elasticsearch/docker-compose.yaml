@@ -7,6 +7,7 @@ services:
       - discovery.type=single-node
       - ES_JAVA_OPTS=-Xms3g -Xmx3g
       - ELASTICSEARCH_CLIENT_TIMEOUT=15000
+      - ELASTIC_PASSWORD=
     ports:
       - "9200:9200"
     networks:
