@@ -6,7 +6,7 @@ services:
     ports:
       - "9113:9113"
     command:
-      - -nginx.scrape-uri=http://nginx/stub_status
+            -nginx.scrape-uri=http://nginx/stub_status
     depends_on:
       - nginx
     expose: 

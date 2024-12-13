@@ -25,9 +25,11 @@ server {
 
    location /stub_status {
         stub_status on;
+	allow 172.17.0.0/16;
         allow 127.0.0.1;
         allow 172.0.0.0/12;
         allow 172.16.0.0/15;
+	allow 192.168.176.1;
         allow 172.18.0.0/24;
         deny all;
     }
@@ -633,6 +635,16 @@ server {
         proxy_cache_bypass $http_upgrade;
     }
 
+
+    location /sparql/ {
+        proxy_pass http://${GRAPH_DB_HOSTNAME}:7200/repositories/${CURRENT_REPOSITORY_NAME};
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
+
     #Static KW Panels Application
     location /kw-panels/ {
         alias /usr/share/nginx/html/kw-panels/ ;
@@ -658,5 +670,22 @@ server {
     location /.well-known/void {
         alias /usr/share/nginx/html/onto/void.ttl;
     }
+
+
+    # Workbench redirect
+    location /workbench{
+	return 301 /graphdb/sparql;
+    }
+
+  # Workbench redirect
+    location /workbench/{
+        return 301 /graphdb/sparql;
+    }
+
+    # Robots.txt
+    location /robots.txt {
+        alias /usr/share/nginx/html/robots.txt;
+    }
+
 
 }
