@@ -26,3 +26,10 @@ start-stage-preload: # Ingests data into GraphDB for the first time. Only launch
 	docker compose -f docker-compose.yaml -f graphdb/docker-compose.stage.preload.yaml up -d $(c)
 start-prod-preload: # Ingests data into GraphDB for the first time. Only launches GraphDB. For prod deployment
 	docker compose -f docker-compose.yaml -f graphdb/docker-compose.prod.preload.yaml up -d $(c)
+repository-setup: # Fetches the GitHub repos needed & configures them
+	git clone https://github.com/KnowWhereGraph/node-browser.git nginx/sites/node-browser
+	git clone https://github.com/KnowWhereGraph/kw-panels.git nginx/sites/kw-panels
+	git clone https://github.com/KnowWhereGraph/kwg-faceted-search.git nginx/sites/kwg-faceted-search
+	git clone https://github.com/KnowWhereGraph/kwg-api.git kwg-api/
+	git clone https://github.com/KnowWhereGraph/kwg-ontologies.git nginx/sites/onto/
+	cp nginx/robots.txt nginx/sites/robots.txt

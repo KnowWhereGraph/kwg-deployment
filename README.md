@@ -28,7 +28,7 @@ For a complete list of commands, run
 
 The following steps aren't automated and will need to be done *before* bringing the stack online.
 
-1. Run `fetch-repositories.sh` to retrieve the web-applications and API
+1. Run `make repository-setup` to retrieve the web-applications and API
 2. Build the faceted search files
 3. Build the node browser files
 4. Put the ssl certificates in `nginx/local-certs`
