@@ -37,3 +37,15 @@ The dashboards are taken from pre-designed packages, which are available on the 
 - [Node Exporter](https://grafana.com/grafana/dashboards/1860-node-exporter-full/)
 - [NGINX](https://grafana.com/grafana/dashboards/14900-nginx/)
 - KWG-API: Custom
+
+## Data Sources
+
+Grafana makes use of two data sources
+
+### Prometheus
+
+Prometheus stores the metrics data and requires the prometheus user/pass to connect. This is set in the datasource yaml file, and the credentials should match the prometheus docker-compose credentials.
+
+### Loki
+
+Loki is the log data source. The communication with this service is unauthenticated.

@@ -2,13 +2,11 @@
 
 Text search & ranking for KnowWhereGraph
 
-## Deploying
-
-The docker-compose file is used for deploying the service. Before deploying, set the password in the docker-compose file.
-
 ## Credentials
 
-```
+Credentials need to be set for Elasticsearch before the stack is deployed. Set this in the docker-compose.yaml file.
+
+```text
 user: elastic
 pass: <refer to docker-compose.yaml>
 ```
