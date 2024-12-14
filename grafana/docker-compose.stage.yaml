@@ -1,6 +1,6 @@
 services:
   grafana:
-      image: grafana/grafana:10.4.2
+      image: grafana/grafana:11.4.0
       container_name: grafana
       volumes:
         - ./grafana/persistent_config:/var/lib/grafana # Persists grafana configurations
@@ -11,7 +11,7 @@ services:
         - GF_USERS_ALLOW_SIGN_UP=false
         - GF_PATHS_CONFIG=/etc/grafana/grafana.ini
         - GF_SECURITY_ADMIN_USER=admin
-        - GF_SECURITY_ADMIN_PASSWORD=password
+        - GF_SECURITY_ADMIN_PASSWORD=
       env_file:
         - 'variables.env'
       restart: unless-stopped

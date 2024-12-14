@@ -1,7 +1,7 @@
 version: '3'
 services:
   prometheus:
-    image: prom/prometheus:v2.48.0
+    image: prom/prometheus:v3.0.1
     volumes:
       - ./prometheus/:/etc/prometheus/
     ports:
@@ -11,7 +11,7 @@ services:
     command:
       - --web.route-prefix=/
       - --config.file=/etc/prometheus/prometheus.yml
-
+      - --web.config.file=/etc/prometheus/web.yml
 
   node-exporter:
     image: prom/node-exporter

@@ -591,6 +591,7 @@ server {
     }
 
     # Forward prometheus traffic to /prometheus
+    # NOTE: Prometheus is accessed at /prometheus/graph
     location /prometheus/ {
         proxy_pass http://prometheus:9090/;
         rewrite /prometheus/(.*) /$1  break;

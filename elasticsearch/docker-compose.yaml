@@ -1,11 +1,13 @@
 services:
   elasticsearch:
-    image: elasticsearch:8.15.1
+    image: elasticsearch:8.16.1
     container_name: elasticsearch
     environment:
       - xpack.security.enabled=true
       - discovery.type=single-node
       - ES_JAVA_OPTS=-Xms3g -Xmx3g
+      - ELASTICSEARCH_CLIENT_TIMEOUT=15000
+      - ELASTIC_PASSWORD=
     ports:
       - "9200:9200"
     networks:

@@ -8,3 +8,5 @@ nginx/sites/node-browser/
 services/
 graphdb/nginx/*
 grafana/persistent_config
+*drawio.bkp
+*.png.bkp
