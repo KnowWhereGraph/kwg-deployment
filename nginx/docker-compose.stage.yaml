@@ -9,12 +9,10 @@ services:
       - 'variables.env'
     volumes:
     - ./nginx/templates:/etc/nginx/templates # NGINX config file
-    - ./nginx/logs:/var/log/nginx # NGINX logs
     - ./nginx/sites:/usr/share/nginx/html # Static sites
-    - ./nginx/local-certs:/etc/letsencrypt/live/staging.knowwheregraph.org # Local certificates
+    - ./nginx/certbot/www:/var/www/certbot
     depends_on: # These services need to exist for the nginx config to validate
       - graphdb
       - kwg-api
     networks:
       - kwg_network
-
