@@ -9,7 +9,6 @@ services:
       - 'variables.env'
     volumes:
     - ./nginx/templates:/etc/nginx/templates # NGINX config file
-    - ./nginx/logs:/var/log/nginx # NGINX logs
     - ./nginx/sites:/usr/share/nginx/html # Static sites
     - ./nginx/local-certs:/etc/letsencrypt/live/localhost # Local certificates
     depends_on: # These services need to exist for the nginx config to validate
