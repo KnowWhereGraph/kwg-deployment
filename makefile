@@ -36,4 +36,6 @@ repository-setup: # Fetches the GitHub repos needed & configures them
 	git clone https://github.com/KnowWhereGraph/kwg-ontologies.git nginx/sites/onto/
 	cp nginx/robots.txt nginx/sites/robots.txt
 validate-deployment: # Checks the local deployment files
-	sh validate.sh
+	sh scripts/validate.sh
+refresh-stage-certs:
+	docker compose run --rm certbot certonly --webroot --webroot-path nginx/local-certs/ -d staging.knowwheregraph.org
