@@ -8,17 +8,19 @@ BUILD_FILES_STAGE := docker-compose.yaml -f nginx/docker-compose.stage.yaml -f n
 help:	## Show this help.
 	@sed -ne '/@sed/!s/## //p' $(MAKEFILE_LIST)
 
-start-prod:	## Brings the stack online, for https://stko-kwg.geog.ucsb.edu building images if needed
+stop-graphdb: # Gracefully shuts GraphDB down. Use this to stop GraphDB.
+	docker kill -s SIGTERM graphdb && docker wait graphdb
+start-prod: validate-deployment	## Brings the stack online, for https://stko-kwg.geog.ucsb.edu,building images if needed
 	docker compose -f ${BUILD_FILES_PROD} up -d $(c)
-stop-prod:	## Brings the stack offline
+stop-prod:	stop-graphdb ## Brings the stack offline
 	docker compose -f ${BUILD_FILES_PROD} down $(c)
-start-local:	## Brings the stack online, for running on a local development machine
+start-local: validate-deployment	## Brings the stack online, for running on a local development machine
 	docker compose -f ${BUILD_FILES_LOCAL} up -d $(c)
-stop-local:	## Brings the stack offline
+stop-local:	stop-graphdb ## Brings the stack offline
 	docker compose -f ${BUILD_FILES_LOCAL} down $(c)
-start-stage:	## Brings the stack online for staging.knowwheregraph.org, building images if needed
+start-stage: validate-deployment	## Brings the stack online for staging.knowwheregraph.org, building images if needed
 	docker compose -f ${BUILD_FILES_STAGE} up -d $(c)
-stop-stage:	## Brings the stack offline for staging.knowwheregraph.org
+stop-stage:	stop-graphdb ## Brings the stack offline for staging.knowwheregraph.org
 	docker compose -f ${BUILD_FILES_STAGE} down $(c)
 start-local-preload: # Ingests data into GraphDB for the first time. Only launches GraphDB. For local development
 	docker compose -f docker-compose.yaml -f graphdb/docker-compose.local.preload.yaml up -d $(c)
