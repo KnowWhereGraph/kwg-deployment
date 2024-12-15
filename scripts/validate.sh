@@ -60,6 +60,13 @@ else
     echo "${GREEN}Good${DEFAULT}: Located the node browser build artifacts."
 fi
 
+# Check for ontology repo
+if [ ! -d nginx/sites/onto ]; then
+    echo "${ORANGE}Error${DEFAULT}: Failed to locate the ontology files. Try pulling from GitHub"
+else
+    echo "${GREEN}Good${DEFAULT}: Located the ontology artifacts."
+fi
+
 echo "\n                  Checking Web Artifacts                      "
 echo "                    ......................                      "
 
