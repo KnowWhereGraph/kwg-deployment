@@ -3,15 +3,6 @@ ORANGE='\033[0;31m'
 DEFAULT='\033[0m'
 GREEN='\033[0;32m'
 
-
-BUILD_FILES_PROD := docker-compose.yaml -f nginx/docker-compose.prod.yaml -f nginx/metrics/docker-compose.yaml -f graphdb/docker-compose.prod.yaml -f elasticsearch/docker-compose.yaml -f prometheus/docker-compose.yaml -f kwg-api/docker-compose.prod.yaml -f grafana/docker-compose.prod.yaml -f loki/docker-compose.yaml
-BUILD_FILES_LOCAL := docker-compose.yaml -f nginx/docker-compose.local.yaml -f nginx/metrics/docker-compose.yaml -f graphdb/docker-compose.local.yaml -f elasticsearch/docker-compose.yaml -f prometheus/docker-compose.yaml -f kwg-api/docker-compose.local.yaml -f grafana/docker-compose.local.yaml -f loki/docker-compose.yaml
-BUILD_FILES_STAGE := docker-compose.yaml -f nginx/docker-compose.stage.yaml -f nginx/metrics/docker-compose.yaml -f graphdb/docker-compose.stage.yaml -f elasticsearch/docker-compose.yaml -f prometheus/docker-compose.yaml -f kwg-api/docker-compose.stage.yaml -f grafana/docker-compose.stage.yaml -f loki/docker-compose.yaml
-
-
-
-
-
 echo "\n\n===== KnowWhereGraph Deployment Configuration Test ====="
 echo "=====                                              ====="
 echo "                  Checking SSL Certificates                  "
@@ -64,7 +55,7 @@ fi
 
 # Check for Node Browser dist
 if [ ! -d nginx/sites/node-browser/node-browser/dist/node-browser ]; then
-    echo "${ORANGE}Error${DEFAULT}: Failed to locate the node browser's build artifacts. Try building the source with its docker-compose file.\n"
+    echo "${ORANGE}Error${DEFAULT}: Failed to locate the node browser's build artifacts. Try building the source with its docker-compose file."
 else
     echo "${GREEN}Good${DEFAULT}: Located the node browser build artifacts."
 fi
@@ -74,7 +65,7 @@ echo "                    ......................                      "
 
 
 # Check for void file
-if [ ! -f nginx/sites/void/void.ttl ]; then
+if [ ! -f nginx/sites/onto/void.ttl ]; then
     echo "${ORANGE}Error${DEFAULT}: Void ttl file not detected!\n This file comes from the kwg-ontologies repository. Check the makefile for the clone command."
 else
     echo "${GREEN}Good${DEFAULT}: Located the void.ttl file."
@@ -82,7 +73,7 @@ fi
 
 
 # Check for robots.txt
-if [ ! -f nginx/sites/robots.txt ]; then
+if [ ! -f nginx/sites/robots/robots.txt ]; then
     echo "${ORANGE}Error${DEFAULT}: Failed to locate robots.txt"
 else
     echo "${GREEN}Good${DEFAULT}: Located the robots.txt"
@@ -107,10 +98,9 @@ else
 fi
 
 echo ""
-echo""
+echo ""
 
-
-echo "\n                  Checking Variables                       "
+echo "                    Checking Variables                       "
 echo "                    .........................                "
 
 # Check for an exiting Grafana database file
@@ -130,3 +120,10 @@ fi
 
 echo ""
 echo""
+
+
+echo "\n\n===== KnowWhereGraph Deployment Configuration Test End ====="
+echo "                                                             "
+echo "                  Finished Deployment Check                  "
+echo "                  .........................                  "
+echo "============================================================="
