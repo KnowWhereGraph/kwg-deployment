@@ -20,7 +20,7 @@ server {
 
     # Certbot certificate challenge
     location /.well-known/acme-challenge/ {
-        root /var/www/certbot;
+        root /usr/share/nginx/certbot;
     }
 
    location /stub_status {
@@ -685,7 +685,7 @@ server {
 
     # Robots.txt
     location /robots.txt {
-        alias /usr/share/nginx/html/robots.txt;
+        alias /usr/share/nginx/html/robots/robots.txt;
     }
 
 
