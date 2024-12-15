@@ -84,15 +84,15 @@ echo "                    .........................                "
 
 # Check for an exiting Grafana database file
 if [ -f grafana/persistent_storage/grafana.db ]; then
-    echo "${ORANGE}Warning${DEFAULT}: Found an existing Grafana database file. Any Grafana password changes will not persist."
+    echo "${ORANGE}Info${DEFAULT}: Found an existing Grafana database file. Any Grafana password changes will not persist."
 else
-    echo "${GREEN}Good${DEFAULT}: Failed to find an existing Grafana database file. A new one will be created"
+    echo "${GREEN}Info${DEFAULT}: Failed to find an existing Grafana database file. A new one will be created"
 fi
 
 # Check for any existing GraphDB repositories
 
 if [ -d graphdb/ ]; then
-    echo "${ORANGE}Info${DEFAULT}: Found existing GraphDB repositories. These will be loaded when GraphDB starts."
+    echo "${GREEN}Info${DEFAULT}: Found existing GraphDB repositories. These will be loaded when GraphDB starts."
 else
     echo "${GREEN}Info${DEFAULT}: Failed to find any GraphDB repositories. GraphDB will not be started with any repositories."
 fi
