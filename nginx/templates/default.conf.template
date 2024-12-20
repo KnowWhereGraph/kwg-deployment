@@ -686,7 +686,7 @@ server {
 
     # Robots.txt
     location /robots.txt {
-        alias /usr/share/nginx/html/robots.txt;
+        alias /usr/share/nginx/html/robots/robots.txt;
     }
 
 }
