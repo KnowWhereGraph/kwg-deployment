@@ -1,8 +1,0 @@
-services:
-  certbot:
-    image: certbot/certbot:latest
-    volumes:
-      - ./nginx/certbot/www:/var/www/certbot
-      - ./nginx/certbot/conf/:/etc/letsencrypt/
-    networks:
-      - kwg_network

@@ -8,13 +8,6 @@ echo "=====                                              ====="
 echo "                  Checking SSL Certificates                  "
 echo "                  .........................                  "
 
-# Check for nginx's local certificates
-if [ ! -f ./nginx/local-certs/cert.ped ]; then
-    echo "${ORANGE}Warning${DEFAULT}: Local certificate not found in 'nginx/local-certs' folder!\nCertificates are required for deploying the system. Refer to the README.md for instructions on self signed certs."
-else
-    echo "${GREEN}Good${DEFAULT}: Located local certificates for nginx."
-fi
-
 # Check for graphdb's local certificates
 if [ ! -f ./nginx/local-certs/cert.ped ]; then
     echo "${ORANGE}Warning${DEFAULT}: Local certificate not found in 'graphdb/local-certs' folder!\nGraphDB may not process SSL data properly!"

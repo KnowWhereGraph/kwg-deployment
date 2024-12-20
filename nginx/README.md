@@ -10,6 +10,18 @@ The NGINX configuration files are templated with environment variables, which ca
 
 ## Certificates
 
+Certificates are mounted into the nginx container from the local filesystem. Non-local deployments work the same way: the `/etc/letsencrypt` files are mounted into the container.
+
+### Staging
+
+New certs can be generated with
+
+`sudo certbot certonly --webroot --webroot-path nginx/data/certbot/www/  -d staging.knowwheregraph.org`
+
+ A common problem is that the certs may have different permissions for mounting into the nginx container.
+
+### Local
+
 Certificates for local development need to be manually generated and added to the `local-certs` directory.
 
 From the LetsEncrypt website, local certificates can be created by running the following from this directory,

@@ -10,7 +10,9 @@ services:
     volumes:
     - ./nginx/templates:/etc/nginx/templates # NGINX config file
     - ./nginx/sites:/usr/share/nginx/html # Static sites
-    - ./nginx/certbot/www:/var/www/certbot
+    - ./nginx/data/certbot/www:/var/www/certbot
+    - /etc/letsencrypt/live/staging.knowwheregraph.org/cert.pem:/etc/letsencrypt/live/staging.knowwheregraph.org/cert.pem # Local certificates
+    - /etc/letsencrypt/live/staging.knowwheregraph.org/privkey.pem:/etc/letsencrypt/live/staging.knowwheregraph.org/key.pem # Local certificates
     depends_on: # These services need to exist for the nginx config to validate
       - graphdb
       - kwg-api
