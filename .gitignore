@@ -1,3 +1,4 @@
+nginx/logs/
 .DS_STORE
 graphdb/license/
 nginx/letsencrypt/local-certs/*
