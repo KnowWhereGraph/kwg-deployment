@@ -8,17 +8,19 @@ KnowWhereGraph has a handful of services that require networking capabilities. T
 
 The NGINX configuration files are templated with environment variables, which can be customized in the docker-compose file. For more information on how the configuration files are generated from the templates refer to [this](https://github.com/docker-library/docs/tree/master/nginx#using-environment-variables-in-nginx-configuration-new-in-119) documentation page.
 
-## Deploying
-
-Deploying nginx without using the make command is *not* recommended and most likely not necessary. If you know what you're doing and need to, you can with
-
-`docker-compose up`
-
-To bring the service down, run
-
-`docker-compose down`
-
 ## Certificates
+
+Certificates are mounted into the nginx container from the local filesystem. Non-local deployments work the same way: the `/etc/letsencrypt` files are mounted into the container.
+
+### Staging
+
+New certs can be generated with
+
+`sudo certbot certonly --webroot --webroot-path nginx/data/certbot/www/  -d staging.knowwheregraph.org`
+
+ A common problem is that the certs may have different permissions for mounting into the nginx container.
+
+### Local
 
 Certificates for local development need to be manually generated and added to the `local-certs` directory.
 
@@ -39,7 +41,7 @@ https://javorszky.co.uk/2019/11/06/get-firefox-to-trust-your-self-signed-certifi
 
 ## Logging
 
-The NGINX logs are found in the container's /var/logs/nginx, which is mounted locally at `./nginx/logs`. For more verbose logging, refer to the NGINX Docker image documentation and modify the deployment script to include any additional flags.
+The NGINX logs should be checked through grafana or by inspecting the container's logs.
 
 ## Metrics
 

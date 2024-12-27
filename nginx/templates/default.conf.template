@@ -1,3 +1,5 @@
+server_names_hash_bucket_size 64;
+
 # Redirect http -> https
 server {
     listen 80 default_server;
@@ -20,8 +22,9 @@ server {
 
     # Certbot certificate challenge
     location /.well-known/acme-challenge/ {
-        root /var/www;
+	alias /var/www/certbot/;
     }
+
 
    location /stub_status {
         stub_status on;
@@ -685,8 +688,7 @@ server {
 
     # Robots.txt
     location /robots.txt {
-        alias /usr/share/nginx/html/robots.txt;
+        alias /usr/share/nginx/html/robots/robots.txt;
     }
-
 
 }

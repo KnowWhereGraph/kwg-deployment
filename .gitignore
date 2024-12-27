@@ -1,10 +1,11 @@
+nginx/logs/
 .DS_STORE
-nginx/logs
 graphdb/license/
-nginx/local-certs/
+nginx/letsencrypt/local-certs/*
 nginx/sites/faceted-search/
 nginx/sites/kw-panels/
 nginx/sites/node-browser/
+kwg-api/
 services/
 graphdb/nginx/*
 grafana/persistent_config

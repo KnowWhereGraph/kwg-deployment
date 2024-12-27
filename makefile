@@ -34,6 +34,7 @@ repository-setup: # Fetches the GitHub repos needed & configures them
 	git clone https://github.com/KnowWhereGraph/kwg-faceted-search.git nginx/sites/kwg-faceted-search
 	git clone https://github.com/KnowWhereGraph/kwg-api.git kwg-api/
 	git clone https://github.com/KnowWhereGraph/kwg-ontologies.git nginx/sites/onto/
-	cp nginx/robots.txt nginx/sites/robots.txt
+	mkdir nginx/sites/robots/
+	cp nginx/robots.txt nginx/sites/robots/robots.txt
 validate-deployment: # Checks the local deployment files
-	sh validate.sh
+	sh scripts/validate.sh
