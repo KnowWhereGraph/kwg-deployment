@@ -29,19 +29,41 @@ For a complete list of commands, run
 The following steps aren't automated and will need to be done *before* bringing the stack online.
 
 1. Run `make repository-setup` to retrieve the web-applications and API
-2. Build the faceted search files
-3. Build the node browser files
-4. Put the ssl certificates in `nginx/local-certs`
-5. Put the GraphDB license in `graphdb/license`
-6. Modify `variables.env` to specify the name of the GraphDB repository the `sparql/` endpoint should query
-7. Modify `variables.env` with the Elasticsearch password
-8. Modify `variables.env` with the server name - without `http` or `www` (localhost/staging.knowwheregraph.org/stko-kwg.geog.ucsb.edu)
-9. On the bare metal server, install the loki docker plugin with `docker plugin install grafana/loki-docker-driver:main--alias loki  --grant-all-permissions`. This scrapes the docker system for logs.
-10. Set the Prometheus credentials (see readme file in `./prometheus/`)
-11. Set the Grafana credentials (see readme file in `./grafana/`)
-12. Set the Elasticsearch credentials (see readme file in `./elasticsearch/`)
-13. Set the prometheus credentials through Grafana > Datasources > Prometheus
-14. Run the validation tool with `sh validate.sh`
+1. Build the faceted search files
+1. Build the node browser files
+1. `mkdir nginx/local-certs`
+2. Transfer certs if applicable
+3. Ensure certs are named cert.pem, key.pem
+4. Put the GraphDB license in `graphdb/license`
+5. Modify `variables.env` to specify the name of the GraphDB repository the `sparql/` endpoint should query
+6. Modify `variables.env` with the server name - without `http` or `www` (localhost/staging.knowwheregraph.org/stko-kwg.geog.ucsb.edu)
+7. On the bare metal server, install the loki docker plugin with `docker plugin install grafana/loki-docker-driver:main--alias loki  --grant-all-permissions`. This scrapes the docker system for logs.
+8. Set the Prometheus credentials (see readme file in `./prometheus/`)
+9. Set the Grafana credentials (see readme file in `./grafana/`)
+10. Set the Elasticsearch credentials (see readme file in `./elasticsearch/`)
+11. Run the validation tool with `make validate-deployment`
+12. Refer to further instructions, depending on the environment
+13. Return from environment specific instructions
+14. [Optional] Run `keytool -genkey -alias graphdb -keyalg RSA`
+15. Setup the connectors (see graphdb readme)
+16. Generate knowledge explorer cache (see knowledge explorer readme)
+
+#### variables.env
+
+This file holds environmental variables that can be injected into containers through docker compose files. This allows for sharing env vars between containers, so that there's less repetition. In the case of this project, the variables belong
+to the nginx service. See issue [60](https://github.com/KnowWhereGraph/kwg-deployment/issues/60).
+
+Nonetheless, these should be set.
+
+`GRAPH_DB_HOSTNAME`: The name for the graphdb service
+
+`ES_HOSTNAME`: The name for the elasticsearch service
+
+`API_HOSTNAME`: The name for the KWG API service
+
+`SERVER_NAME`: The hostname where things are deployed (localhost | staging.knowwheregraph.org | stko-kwg.geog.ucsb.edu). Without http or https
+
+`CURRENT_REPOSITORY_NAME`: Used as the repository that `/sparql` endpoint requests are sent to
 
 ### Production Environment
 
