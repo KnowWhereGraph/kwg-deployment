@@ -85,38 +85,16 @@ Because of KnowWhereGraph's graph resource requirements, it's difficult to creat
 | Memory    | 8 GB   |
 | Disk      | 20 GB     |
 
-#### Certificates (NGINX and GraphDB)
+#### Setting Certificates (NGINX and GraphDB)
 
 LetsEncrypt can't be used for local HTTPS . More information can be found on LetsEncrypt's [website](https://letsencrypt.org/docs/certificates-for-localhost/). This deployment architecture makes use of self signed certificates for localhost.
 
 1. Generate the local certs
-2. Name the `*.cert` file `cert.cert`
-3. Name the `*.key` file `key.key`
+2. Name the `*.cert` file `cert.pem`
+3. Name the `*.key` file `key.pem`
 4. Place them in `./nginx/local-certs`
 
 GraphDB also needs its own set of certificates. These can be generated with `keytool -genkey -alias graphdb -keyalg RSA` and should be placed in `graphdb/nginx/local-certs/`.
-
-#### Running Locally
-
-### Updating Environmental Variables
-
-Some evironmental variables are kept in the `variables.env`. These variables are used across deployments and within NGINX; they can be injected into any container.
-
-`GRAPH_DB_HOSTNAME`: The name for the graphdb service
-
-`ES_HOSTNAME`: The name for the elasticsearch service
-
-`API_HOSTNAME`: The name for the KWG API service
-
-`SERVER_NAME`: The hostname where things are deployed (localhost | staging.knowwheregraph.org | stko-kwg.geog.ucsb.edu). Without http or https
-
-`CURRENT_REPOSITORY_NAME`: Used as the repository that `/sparql` endpoint requests are sent to
-
-## Updating Services
-
-Right now, when a single service is updated, the stack needs to be brought down, and then back up. This is inconvenient, and will be addressed in the future.
-
-To update any of the webapps, use `git pull` to update them from source and follow the repository readme for building. Restarting nxing isn't required for the changes to become live.
 
 ## Development
 
@@ -143,3 +121,101 @@ When reviewing architecture changes
   - Was the makefile updated?
   - Will this work locally, on staging, and on production?
 - Are there any stakeholders that might need to be notified of the change?
+
+
+## Administration
+
+### Redeploy Individual Services
+
+To update a single service, first find it with `docker ps`. If it's graphdb, use `make stop graphdb`. Otherwise use `docker stop container_id` followed by `docker rm container_id`. Finally, use `make start-env` to start the service.
+
+### Updating Services
+
+Update the docker compose file, update the deployment's kwg-deployment local repo. Use the "Redeploy Individual Services" docs for updating the single service.
+
+### Viewing Container Logs & Metrics
+
+Container logs and metrics can be found through Grafana. This is at your-host.org/metrics. View the grafana readme for a guide on reading container logs.
+
+
+### Loading Data Into GraphDB for the First Time
+
+#### Step 1: Create Database Index with Preload
+
+The [preload](https://graphdb.ontotext.com/documentation/10.8/loading-and-updating-data.html) tool is used to create the database index offline (GraphDB can't be running). This tool is Ontotext's answer to loading large graphs. It is important
+ to note that it *does not perform inference*; the ontologies must be loaded after.
+
+The preload tool and GraphDB share the same docker image however, they differ on the entrypoint command to the container. When using the preload tool, the `preload` command is used vs running the GraphDB binary. Because of this, there are *two
+* docker compose flavors.
+
+To use the preload compose file,
+
+1. Ensure `kwg-deployment/graphdb/graphdb-data/home/data/repositories/KWG/config.ttl` exists
+2. Place all data to be loaded in `kwg-deployment/graphdb/graphdb-data/import-data`
+3. Run `make start-env`
+
+This process may take days! It's advised to run the above command in a tmux session
+
+#### Step 2: Load Ontologies
+
+1. Mash all ontologies into one large ontology, and upload that file or upload each individually
+2. Wait for inferencing to complete (may take days)
+
+### Loading a Repository Into a Fresh GraphDB Instance
+
+GraphDB's architecture allows for swapping out repositories by modifying certain filesystem artifacts. These artifacts are found in `kwg-deployment/graphdb/graphdb-data/home/data/repositories`. This can be used several different ways.
+
+One example of this is transferring the staging database to production by replacing production's KWG folder with staging's. This is done to avoid waiting for inferencing and loading overheads, given that if we're ready to promote staging to pr
+oduction the data should be okay.
+
+The above case is a general case of moving the GraphDB repository off one host, and onto another. The steps to do this are,
+
+1. Obtain a new computer with specs to run the graph ("host computer")
+2. git clone the deployment repository
+3. Create a new docker-compose file for your host, in each service (or rename stko-kwg)
+5. Go through all the setup steps
+6. Stop GraphDB
+7. ssh to host that has KWG ("source computer")
+8. Stop GraphDB
+9. Check the name of the repository being transferred
+10. Ensure this repository does not exist on the host computer
+11. rsync or ssh the directory over to the host computer's directory (eg, if the kwg-deployment repo's root is `~`, the destination is `/kwg-deployment/graphdb/graphdb-data/home/data/repositories/KWG`)
+12. Switch to the host computer
+13. Once finished, start GraphDB; startup may take several hours
+14. Set up connectors
+15. Generate knowledge explorer cache
+16. Set up certs
+
+
+### Common Issues
+
+#### Passwords being asked in Grafana
+
+If login popups are happening while viewing dashboards, the passwords have been set up incorrectly when starting the stack. Delete the grafana db files and go through the setup again.
+
+#### HTTPS Broken
+
+When there's an HTTPS issue, it could be several things
+
+1. The certs have expired
+2. The new certs aren't being mounted into the nginx container
+3. The certs aren't named properly (see setup guide)
+
+Use `docker exec -it nginx_container_id bash` to check the mount location to see if the certs are there and have the proper extension
+
+#### {Some static site} Isn't found
+
+When a site like the node browser of knowledge explorer isn't found,
+
+1. Has the project been built?
+2. Are the build artifacts mounted into the nginx container?
+3. Are the permissions okay?
+
+Use `docker exec -it nginx_container_id bash` to check the static sites; check to see if it's there, the permissions, etc
+
+#### GraphDB is down
+
+1. Check to see if the container is running
+2. If it's not, `make start-env`
+3. If it is, and the process appears hung - stop at your own risk with make `stop-graphdb`
+4. Once stopped, start again with `make start-env`
