@@ -174,7 +174,7 @@ To use the preload compose file,
 
 1. Ensure `kwg-deployment/graphdb/graphdb-data/home/data/repositories/KWG/config.ttl` exists
 2. Place all data to be loaded in `kwg-deployment/graphdb/graphdb-data/import-data`
-3. Run `make start-env`
+3. Run `make start-env-preload`
 
 This process may take days! It's advised to run the above command in a tmux session
 
